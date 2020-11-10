@@ -1,0 +1,190 @@
+@media (max-width:728px) {
+
+.listslide a {
+    margin-bottom: 5px !important;
+    font-size: 15px;
+    /* padding: 11px 15px; */
+    font-weight: 100;
+    border-radius: 10px;
+    /* margin-left: 20px; */
+    display: flex;
+    margin-top: 7px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.listslide h1 {
+    text-align: center;
+    color: white;
+    font-size: 15px;
+}
+.about-as p {
+    font-size: 17px;
+    color: #000000;
+    text-align: center;
+}
+.listslide {
+    height: 14rem;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    color: white;
+    background-color: #00000066;
+    z-index: 99999999999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.listslide ul {
+    padding: 5px;;
+}
+img.d-block.w-100 {
+    height: 14rem;
+}
+header.upper-top {
+    display: none;
+}
+.logoSection img {
+    text-align: right;
+    width: 82px;
+    position: relative;
+}
+.col-lg-6.imgAd.text-left {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+section#navbar{
+    display: none;
+
+}
+section.header-ads {
+    padding: 7px;
+    display: none;
+}
+.card-artical-a-parent .col-lg-4 {
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+}
+footer h1 {
+    direction: ltr;
+    font-size: 15px;
+    color: #fff;
+    text-align: center !important;
+}
+.soical-footer {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+footer .col-lg-4
+{
+    display: none;
+}
+footer p{
+    display: none;
+}
+.contact img {
+    width: 100% !important;
+}
+.card-team {
+    margin-top: 2rem;
+    width: 100%;
+    box-shadow: 0px 0px 6px #ccc;
+    border-radius: 7px;
+    padding-inline-start: 5px;
+    display: flex;
+}
+.card-team h2 {
+    font-size: 14px;
+    color: #218FC2;
+    display: flex;
+    justify-content: center;
+    padding-right: 18px;
+    padding-top: 6px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+html,body{
+    font-family: 'NotoKufiArabic-Regular';
+    width: 100% !important;
+    margin: 0 auto !important;
+      overflow-x: hidden !important;
+}
+.over-lay-detials-header .soical-header-artical {
+    position: absolute;
+    display: flex;
+    margin-top: inherit;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: unset;
+    transform: unset;}
+.over-lay-detials-header h1 {
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    margin-top: 2rem;
+    align-items: center;
+    padding-right: 39px;
+}
+.artical-detials-body h1 {
+    text-align: right;
+    font-size: 20px;
+    color: #173460;
+    font-weight: bold;
+}
+.responsive .container .navbar ._Menus-show {
+    left: 0;
+    z-index: 99;
+}
+.responsive .navbar {
+    display: block !important;
+}
+.artical-detials-body p {
+    text-align: right;
+    font-size: 16px;
+    color: #000000;
+}.edit-team-artical-p p{
+    font-size: 10px !important;
+
+}
+.responsive{
+    display: block;
+}
+.membership a {
+    text-align: center;
+    padding-top: 14px;
+    text-decoration: unset;
+    color: #218FC2;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+.over-lay-detials-header .soical-header-artical i {
+    background-color: #ffff;
+    width: 30px;
+    margin-left: 14px;
+    height: 30px;
+    font-size: 18px;
+    border-radius: 50%;
+    color: #173460;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+}
+@media (min-width: 1200px)
+{
+
+.edit-team .container {
+    max-width: 1140px !important;
+}
+}
