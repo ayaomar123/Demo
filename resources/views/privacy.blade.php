@@ -1,8 +1,6 @@
-
 @include('frontend.header')
 @include('frontend.headerads')
 @include('frontend.nav')
-@include('frontend.slider')
 
 @yield('section')
 <section class="privacy">

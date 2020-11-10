@@ -7,37 +7,37 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                         <li class="nav-item active">
-                                                <a class=" nav-link " :href="ahome">home <span class="sr-only">(current)</span></a>
+                                                <a class=" nav-link " :href="ahome">الرئيسية <span class="sr-only">(current)</span></a>
                                             </li>
                                         <li class="nav-item">
-                                                <a class=" nav-link" :href="asbmc">sbmc</a>
+                                                <a class=" nav-link" :href="asbmc">التحليل الاقتصادي</a>
                                             </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="aExperts">sbmc</a>
+                                        <a class=" nav-link" :href="aExperts">البحث العلمي</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="asection">sbmc</a>
+                                        <a class=" nav-link" :href="asection">الصحة</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="aDesigners">sbmc</a>
+                                        <a class=" nav-link" :href="aDesigners">تنمية الذات</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="abrand">sbmc</a>
+                                        <a class=" nav-link" :href="abrand">المراة والطفل</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="aTheatrical">sbmc</a>
+                                        <a class=" nav-link" :href="aTheatrical">ثقافة دينية</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="ahasri">sbmc</a>
+                                        <a class=" nav-link" :href="ahasri">علوم وفنون</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="aTV">sbmc</a>
+                                        <a class=" nav-link" :href="aTV">أخبار المجتمع</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class=" nav-link" :href="amarket">sbmc</a>
+                                        <a class=" nav-link" :href="amarket">عجائب وغرائب</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class=" nav-link" :href="aryadh">sbmc</a>
+                                            <a class=" nav-link" :href="aryadh">السفر والسياحة</a>
                                             </li>
                                       </ul>
                         </div>

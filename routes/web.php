@@ -20,7 +20,18 @@ Route::get('/index', function () {
 Route::get('/privacy', function () {
     return view('privacy');
 });
-
+Route::get('/law', function () {
+    return view('laws');
+});
+Route::get('/editor', function () {
+    return view('editor');
+});
+Route::get('/call', function () {
+    return view('call');
+});
+Route::get('/who', function () {
+    return view('who');
+});
 
 
 

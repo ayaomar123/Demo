@@ -77,21 +77,21 @@
                   <a class="nav-link" href="{{ url('privacy') }}">سياسة الخصوصية</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('privacy') }}">القوانين والأحكام</a>
+                  <a class="nav-link" href="{{ url('law') }}">القوانين والأحكام</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('privacy') }}">عن موقع</a>
+                    <a class="nav-link" href="{{ url('about') }}">عن موقع</a>
                   </li>
 
 
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('privacy') }}">فريق التحرير</a>
+                    <a class="nav-link" href="{{ url('editor') }}">فريق التحرير</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('privacy') }}">من نحن</a>
+                    <a class="nav-link" href="{{ url('who') }}">من نحن</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('privacy') }}">اتصل بنا</a>
+                    <a class="nav-link" href="{{ url('call') }}">اتصل بنا</a>
                   </li>
               </ul>
         </div>

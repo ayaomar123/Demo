@@ -4,7 +4,7 @@
 @include('frontend.nav')
 @include('frontend.slider')
 
-@yield('section')
+
 
 <section class="artical-a" style="    margin-top: 3rem;">
     <div class="container">
@@ -167,6 +167,7 @@
 
 </section>
 <!--===========end ==============-->
+@yield('section')
 <section class="artical-a">
         <div class="container">
             <div class="row">

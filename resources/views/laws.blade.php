@@ -1,6 +1,8 @@
+
+@include('frontend.header')
 @include('frontend.headerads')
 @include('frontend.nav')
-@include('frontend.slider')
+
 @yield('section')
 <section class="treams">
     <div class="container">
