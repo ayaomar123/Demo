@@ -10,13 +10,13 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3fa8ad4ccc.js"></script>
     <!--css-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/slider.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/header.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/slider.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     <!--End css-->
 
 </head>

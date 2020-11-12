@@ -34,12 +34,12 @@
 
 
 <!----java script----->
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/vue.js"></script>
-<script src="js/script-vue.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/script.js"></script>
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/vue.js')}}"></script>
+<script src="{{asset('assets/js/script-vue.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/script.js')}}"></script>
 <!---- End java script----->
 
 </body>

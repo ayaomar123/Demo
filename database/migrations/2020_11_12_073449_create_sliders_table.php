@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateSlidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('sliders', function (Blueprint $table) {
+            $table->integer('article_id')->unsigned();
             $table->string('title');
-            $table->string('description');
-            $table->integer('status');
-            $table->string('image');
+            $table->string('link');
+            $table->string('status');
             $table->timestamps();
+            $table->string('slug')->unique();
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('sliders');
     }
 }

@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/home', [AdminController::class,'index']);
-Route::get('/index', function () {
+Route::get('/index/{locale}', function ($locale) {
+    App::setLocale($locale);
     return view('index');
 });
 Route::get('/privacy', function () {

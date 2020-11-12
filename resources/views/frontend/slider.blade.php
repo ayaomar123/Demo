@@ -17,7 +17,7 @@
                             <a href="#" class="badge badge-info">فيلا</a>
                             </ul>
                             </div>
-                <img class="d-block w-100" src="img/BG.png" alt="First slide">
+                <img class="d-block w-100" src="../img/BG.png" alt="First slide">
               </div>
               <div class="carousel-item">
                     <div class = "listslide">
@@ -27,10 +27,10 @@
 
                                 </ul>
                         </div>
-                    <img class="d-block w-100" src="img/slideImg2.png" alt="First slide">
+                    <img class="d-block w-100" src="../img/slideImg2.png" alt="First slide">
                 </div>
               <div class="carousel-item">
-                    <img class="d-block w-100" src="img/slideImg3.png" alt="First slide">
+                    <img class="d-block w-100" src="../img/slideImg3.png" alt="First slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
