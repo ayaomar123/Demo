@@ -14,13 +14,13 @@ class CreateSlidersTable extends Migration
     public function up()
     {
         Schema::create('sliders', function (Blueprint $table) {
-            $table->integer('article_id')->unsigned();
+            $table->id();
             $table->string('title');
             $table->string('link');
             $table->string('status');
             $table->timestamps();
             $table->string('slug')->unique();
-            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->unsignedBigInteger('article_id');
         });
     }
 

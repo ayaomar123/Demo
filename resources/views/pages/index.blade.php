@@ -4,8 +4,6 @@
 @include('frontend.nav')
 @include('frontend.slider')
 
-
-
 <section class="artical-a" style="    margin-top: 3rem;">
     <div class="container">
         <div class="row">
@@ -31,7 +29,7 @@
                                                 <span class="date"> <i class="far fa-calendar-alt"></i> 29/09/2019 </span>
                                </div>
                                <img src="../img/backpack.png" alt="">
-                              <h1><a href="detials.html"> {{ __('lang.msg')}} </a></h1>
+                              <h1><a href="detials.html"> مقالات قصيرة عن الحياة</a></h1>
                                    <p>الحياة  كيف تستمع بالحياة  كيف تتخلى عن النمطية تعلم أن تحب الحياة  ابحث عما يُسعدك الحياة اللغز الذي نبحث عن مكانه، الحياة ذاك الشيء البعيد...</p>
                             </div>
                        </div>

@@ -12,26 +12,33 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-Route::get('/home', [AdminController::class,'index']);
 Route::get('/index/{locale}', function ($locale) {
     App::setLocale($locale);
     return view('index');
 });
+*/
+Route::get('/home', [AdminController::class,'index']);
+Route::get('/admin/{locale}', function ($locale) {
+    App::setLocale($locale);
+    return view('layouts.admin');
+});
+Route::get('/index', function () {
+    return view('pages.index');
+});
 Route::get('/privacy', function () {
-    return view('privacy');
+    return view('pages.privacy');
 });
 Route::get('/law', function () {
-    return view('laws');
+    return view('pages.laws');
 });
 Route::get('/editor', function () {
-    return view('editor');
+    return view('pages.editor');
 });
 Route::get('/call', function () {
-    return view('call');
+    return view('pages.call');
 });
 Route::get('/who', function () {
-    return view('who');
+    return view('pages.who');
 });
 
 
@@ -39,3 +46,6 @@ Route::get('/who', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', function () {
+    return view('profile');
+});

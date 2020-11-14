@@ -1,5 +1,15 @@
 <?php
    return [
-      'msg' => 'Articles'
+      'Dashboard' => 'Dashboard',
+      'Features' => 'Features',
+      'Crud' => 'Crud',
+      'Apps' => 'Apps',
+      'Pages' => 'Pages',
+      'Hi,' => 'Hi,',
+      'sean' => 'Sean',
+      'About' => 'About',
+      'Team' => 'Team',
+      'Contact' => 'Contact',
+      'Admin' => 'Dashboard '
    ];
 ?>
