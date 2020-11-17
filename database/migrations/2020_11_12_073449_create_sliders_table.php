@@ -19,7 +19,6 @@ class CreateSlidersTable extends Migration
             $table->string('link');
             $table->string('status');
             $table->timestamps();
-            $table->string('slug')->unique();
             $table->unsignedBigInteger('article_id');
         });
     }

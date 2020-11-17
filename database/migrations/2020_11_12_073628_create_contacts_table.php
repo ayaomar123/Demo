@@ -20,7 +20,6 @@ class CreateContactsTable extends Migration
             $table->string('email')->unique();
             $table->string('msg_title');
             $table->string('msg');
-            $table->string('slug')->unique();
         });
     }
 

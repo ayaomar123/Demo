@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    protected $fillable = ['title', 'link', 'article_id','status','slug'];
+    protected $fillable = ['title', 'link', 'article_id','status'];
 
     public function Article()
     {
-        return $this->belongsTo('App\Article', 'article_id');
+        return $this->belongsTo(Articles::class);
     }
 }
