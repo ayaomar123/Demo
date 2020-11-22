@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\MyControllers;
+namespace App\Http\Controllers;
+use App\Http\Requests\CategoryRequest;
+use App\models\Categories;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
+        $categories = Categories::all();
+        return view('Categories.index',compact('categories'));
     }
 
     /**
@@ -24,7 +26,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        //$this->authorize('create',Categories::class);
+        return view('Categories.create');
     }
 
     /**
@@ -33,9 +36,15 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('image')){
+            $data['image'] = $request->file('image')->store('public');
+        }
+        Categories::create($data);
+        return redirect(route('categores.index'));
     }
 
     /**
@@ -57,7 +66,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Categories::find($id);
+        return view('Categories.edit',compact('category'));
+
     }
 
     /**
@@ -69,7 +80,9 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+       Categories::query()->find($id)->update($data);
+        return redirect(route('categores.index'));
     }
 
     /**
@@ -80,6 +93,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Categories::query()->find($id)->delete();
+        return redirect(route('categores.index'));
     }
 }

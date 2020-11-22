@@ -7,19 +7,32 @@ use Illuminate\Support\Str;
 
 class Articles extends Model
 {
-    protected $fillable = ['title','slug','name','description','status','image'];
+    protected $fillable = ['category_id','title','slug','description','status','image'];
 
     public function category()
     {
         return $this->belongsTo(Categories::class);
     }
 
-    public function setSlugAttribute($slug)
+    protected static function boot()
     {
-        if (empty($slug)) {
-            $slug = $this->attributes['title'] . ' ' . Str::random(10);
-        }
+        parent::boot();
 
-        $this->attributes['slug'] = Str::slug($slug, '-');
+        static::creating(function ($article) {
+            $article->slug = Str::slug($article->title);
+        });
+    }
+
+//    public function setSlugAttribute($slug)
+//    {
+//        if (empty($slug)) {
+//            $slug = $this->attributes['title'] . ' ' . Str::random(10);
+//        }
+//
+//        $this->attributes['slug'] = Str::slug($slug, '-');
+//    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
