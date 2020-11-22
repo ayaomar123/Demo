@@ -21,13 +21,12 @@
                     <td>{{ $slider->link}}</td>
                     <td>{{ $slider->status}}</td>
                     <td>1</td>
-                    <td> <a href="{{ route('categores.edit',[$slider->id]) }}">Edit </a></td>
-                    <td> <form class="" action="{{ route('categores.delete',[$slider->id]) }}" method="post">
+                    <td> <a href="{{ route('slider.edit',[$slider->id]) }}">Edit </a></td>
+                    <td> <form class="" action="{{ route('slider.delete',[$slider->id]) }}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit"class="btn btn-danger" name="button">Delete</button>
                         </form> </td>
-
                 </tr>
             @endforeach
         </table>

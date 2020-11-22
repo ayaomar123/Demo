@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\SliderRequest;
-use App\Models\Slider;
+
+use App\Http\Requests\AdsRequest;
+use App\Models\Ads;
 use Illuminate\Http\Request;
 
-class SliderController extends Controller
+class AdsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::all();
-        return view('Slider.index',compact('sliders'));
+        $ads = Ads::all();
+        return view('Ads.index',compact('ads'));
     }
 
     /**
@@ -25,7 +26,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('Slider.create');
+        return view('Ads.create');
     }
 
     /**
@@ -34,12 +35,17 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SliderRequest $request)
+    public function store(AdsRequest $request)
     {
-        //dd($request);
         $data = $request->validated();
-        Slider::create($data);
-        return redirect(route('slider.index'));
+
+        if ($request->hasFile('image')){
+            $data['image'] = $request->file('image')->store('public');
+        }
+
+        Ads::create($data);
+
+        return redirect(route('ads.index'));
     }
 
     /**
@@ -61,8 +67,9 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        $slider = Slider::find($id);
-        return view('Slider.edit',compact('slider'));
+        $ads = Ads::find($id);
+
+        return view('Ads.edit',compact('ads'));
     }
 
     /**
@@ -75,8 +82,8 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        Slider::query()->find($id)->update($data);
-        return redirect(route('slider.index'));
+        Ads::query()->find($id)->update($data);
+        return redirect(route('ads.index'));
     }
 
     /**
@@ -87,7 +94,7 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        Slider::query()->find($id)->delete();
-        return redirect(route('slider.index'));
+        Ads::query()->find($id)->delete();
+        return redirect(route('ads.index'));
     }
 }

@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\SliderRequest;
-use App\Models\Slider;
+
+use App\Http\Requests\PageRequest;
+use App\Models\Pages;
 use Illuminate\Http\Request;
 
-class SliderController extends Controller
+class PagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::all();
-        return view('Slider.index',compact('sliders'));
+        $pages = Pages::all();
+        return view('EndPage.index',compact('pages'));
     }
 
     /**
@@ -25,7 +26,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('Slider.create');
+        return view('EndPage.create');
     }
 
     /**
@@ -34,12 +35,11 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SliderRequest $request)
+    public function store(PageRequest $request)
     {
-        //dd($request);
         $data = $request->validated();
-        Slider::create($data);
-        return redirect(route('slider.index'));
+        Pages::create($data);
+        return redirect(route('page.index'));
     }
 
     /**
@@ -61,8 +61,8 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        $slider = Slider::find($id);
-        return view('Slider.edit',compact('slider'));
+        $page = Pages::find($id);
+        return view('EndPage.edit',compact('page'));
     }
 
     /**
@@ -75,8 +75,8 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        Slider::query()->find($id)->update($data);
-        return redirect(route('slider.index'));
+        Pages::query()->find($id)->update($data);
+        return redirect(route('page.index'));
     }
 
     /**
@@ -87,7 +87,7 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        Slider::query()->find($id)->delete();
-        return redirect(route('slider.index'));
+        Pages::query()->find($id)->delete();
+        return redirect(route('page.index'));
     }
 }
