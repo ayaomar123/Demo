@@ -1,3 +1,4 @@
+<html  lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar'? 'rtl' : 'ltr' }}">
 <div id="kt_header" class="header header-fixed">
     <!--begin::Container-->
     <div class="container-fluid d-flex align-items-stretch justify-content-between">
@@ -10,7 +11,8 @@
 
                     <li class="menu-item menu-item-active" aria-haspopup="true">
                         <a href="{{url('home')}}" class="menu-link">
-                            <span class="menu-text">Home </span>
+                            <span class="menu-text">{{ __('lang.home') }}
+							</span>
                         </a>
                     </li>
 
@@ -95,7 +97,7 @@
                     <ul class="navi navi-hover py-4">
                         <!--begin::Item-->
                         <li class="navi-item">
-                            <a href="{{url('/admin/en')}}" class="navi-link">
+                            <a href="{{url('/home')}}" class="navi-link">
                                 <span class="symbol symbol-20 mr-3">
                                     <img src="../assets/media/svg/flags/226-united-states.svg" alt="" />
                                 </span>
@@ -105,7 +107,7 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="navi-item active">
-                        <a href="{{url('/admin/ar')}}" class="navi-link">
+                        <a href="{{url('/home/ar')}}" class="navi-link">
                                 <span class="symbol symbol-20 mr-3">
                                     <img src="../assets/media/svg/flags/128-spain.svg" alt="" />
                                 </span>

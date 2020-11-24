@@ -35,9 +35,9 @@ Route::middleware(['auth'])->prefix('/home')->group(function () {
     Route::resource('users', UserController::class);
 });
 //Route::get('/home', [AdminController::class,'index'])->name('home');
-Route::get('/admin/{locale}', function ($locale) {
+Route::get('/home/{locale}', function ($locale) {
     App::setLocale($locale);
-    return view('layouts.admin');
+    return view('layouts.myAdmin');
 });
 
 Route::group(['prefix' => 'categories'], function(){

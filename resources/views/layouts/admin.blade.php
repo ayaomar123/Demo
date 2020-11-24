@@ -1,3 +1,4 @@
+
 @include('dashboard.sider')
 
 <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">

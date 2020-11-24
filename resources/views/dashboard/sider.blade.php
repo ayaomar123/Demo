@@ -36,7 +36,7 @@
 			<!--begin::Toolbar-->
 			<div class="d-flex align-items-center">
 				<!--begin::Aside Mobile Toggle-->
-				<button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
+				<button class="btn p-0 burger-icon" id="kt_aside_mobile_toggle">
 					<span></span>
 				</button>
 				<!--end::Aside Mobile Toggle-->
@@ -68,11 +68,11 @@
 			<!--begin::Page-->
 			<div class="d-flex flex-row flex-column-fluid page">
 				<!--begin::Aside-->
-				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+				<div class="aside   d-flex flex-column flex-row-auto" id="kt_aside">
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
-						<a href="index.html" class="brand-logo">
+						<a href="{{url('home')}}" class="brand-logo">
 							<img alt="Logo" class="w-65px" src="../assets/media/logos/logo-letter-13.png" />
 						</a>
 						<!--end::Logo-->
@@ -85,228 +85,45 @@
 							<!--begin::Menu Nav-->
 							<ul class="menu-nav">
 								<li class="menu-item menu-item-active" aria-haspopup="true">
-									<a href="index.html" class="menu-link">
+									<a href="{{url('home/users')}}" class="menu-link">
 										<i class="menu-icon flaticon2-architecture-and-city"></i>
-										<span class="menu-text">Export</span>
+										<span class="menu-text">Mange Users</span>
 									</a>
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-									<a href="javascript:;" class="menu-link menu-toggle">
+									<a href="{{url('home/roles')}}" class="menu-link menu-toggle">
 										<i class="menu-icon flaticon2-telegram-logo"></i>
-										<span class="menu-text">Actions</span>
-										<i class="menu-arrow"></i>
+										<span class="menu-text">Manage Roles</span>
 									</a>
-									<div class="menu-submenu">
-										<i class="menu-arrow"></i>
-										<ul class="menu-subnav">
-											<li class="menu-item menu-item-parent" aria-haspopup="true">
-												<span class="menu-link">
-													<span class="menu-text">Actions</span>
-												</span>
-											</li>
-											<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-												<a href="javascript:;" class="menu-link menu-toggle">
-													<i class="menu-bullet menu-bullet-line">
-														<span></span>
-													</i>
-													<span class="menu-text">Reports</span>
-													<i class="menu-arrow"></i>
-												</a>
-												<div class="menu-submenu">
-													<i class="menu-arrow"></i>
-													<ul class="menu-subnav">
-														<li class="menu-item" aria-haspopup="true">
-															<a href="#" class="menu-link">
-																<i class="menu-bullet menu-bullet-dot">
-																	<span></span>
-																</i>
-																<span class="menu-text">Finance</span>
-															</a>
-														</li>
-														<li class="menu-item" aria-haspopup="true">
-															<a href="#" class="menu-link">
-																<i class="menu-bullet menu-bullet-dot">
-																	<span></span>
-																</i>
-																<span class="menu-text">HR</span>
-															</a>
-														</li>
-														<li class="menu-item" aria-haspopup="true">
-															<a href="#" class="menu-link">
-																<i class="menu-bullet menu-bullet-dot">
-																	<span></span>
-																</i>
-																<span class="menu-text">Projects</span>
-															</a>
-														</li>
-														<li class="menu-item" aria-haspopup="true">
-															<a href="#" class="menu-link">
-																<i class="menu-bullet menu-bullet-dot">
-																	<span></span>
-																</i>
-																<span class="menu-text">Events</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-line">
-														<span></span>
-													</i>
-													<span class="menu-text">Messages</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-line">
-														<span></span>
-													</i>
-													<span class="menu-text">Notes</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-line">
-														<span></span>
-													</i>
-													<span class="menu-text">Remarks</span>
-												</a>
-											</li>
-										</ul>
-									</div>
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-									<a href="javascript:;" class="menu-link menu-toggle">
+									<a href="{{url('Endpage')}}" class="menu-link menu-toggle">
 										<i class="menu-icon flaticon2-laptop"></i>
 										<span class="menu-text">Pages</span>
-										<i class="menu-arrow"></i>
 									</a>
-									<div class="menu-submenu">
-										<i class="menu-arrow"></i>
-										<ul class="menu-subnav">
-											<li class="menu-item menu-item-parent" aria-haspopup="true">
-												<span class="menu-link">
-													<span class="menu-text">Pages</span>
-												</span>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Reports</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Apps</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Downloads</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Tasks</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Events</span>
-												</a>
-											</li>
-										</ul>
-									</div>
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-									<a href="javascript:;" class="menu-link menu-toggle">
+									<a href="{{url('categories')}}" class="menu-link menu-toggle">
 										<i class="menu-icon flaticon2-browser-2"></i>
-										<span class="menu-text">Reports</span>
-										<i class="menu-arrow"></i>
+										<span class="menu-text">Manage Categories</span>
 									</a>
-									<div class="menu-submenu">
-										<i class="menu-arrow"></i>
-										<ul class="menu-subnav">
-											<li class="menu-item menu-item-parent" aria-haspopup="true">
-												<span class="menu-link">
-													<span class="menu-text">Reports</span>
-												</span>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Cases</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Messages</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Reports</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">Calendar</span>
-												</a>
-											</li>
-											<li class="menu-item" aria-haspopup="true">
-												<a href="#" class="menu-link">
-													<i class="menu-bullet menu-bullet-dot">
-														<span></span>
-													</i>
-													<span class="menu-text">FAQ</span>
-												</a>
-											</li>
-										</ul>
-									</div>
 								</li>
 								<li class="menu-item" aria-haspopup="true">
-									<a href="javascript:;" class="menu-link">
+									<a href="{{url('articles')}}" class="menu-link">
 										<i class="menu-icon flaticon2-console"></i>
-										<span class="menu-text">Console</span>
+										<span class="menu-text">Manage Articles</span>
 									</a>
 								</li>
 								<li class="menu-item" aria-haspopup="true">
-									<a href="javascript:;" class="menu-link">
+									<a href="{{url('slider')}}" class="menu-link">
 										<i class="menu-icon flaticon2-console"></i>
-										<span class="menu-text">System</span>
+										<span class="menu-text">Manage Slider</span>
 									</a>
 								</li>
 								<li class="menu-item" aria-haspopup="true">
-									<a href="#" class="menu-link">
+									<a href="{{url('ads')}}" class="menu-link">
 										<i class="menu-icon flaticon2-graph-1"></i>
-										<span class="menu-text">Logs</span>
+										<span class="menu-text">Manage Ads</span>
 									</a>
 								</li>
 							</ul>
