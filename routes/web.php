@@ -6,7 +6,10 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +26,15 @@ Route::get('/index/{locale}', function ($locale) {
     return view('index');
 });
 */
-Route::get('/home', [AdminController::class,'index'])->name('home');
+Auth::routes();
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
+Route::middleware(['auth'])->prefix('/home')->group(function () {
+    Route::get('/', [AdminController::class,'index']);
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+});
+//Route::get('/home', [AdminController::class,'index'])->name('home');
 Route::get('/admin/{locale}', function ($locale) {
     App::setLocale($locale);
     return view('layouts.admin');
@@ -82,10 +93,6 @@ Route::group(['prefix' => 'contact'], function(){
     Route::delete('/{id}', [ContactController::class, 'destroy'])->name('contact.delete');
 });
 
-
-
-
-
 Route::get('/index', function () {
     return view('pages.index');
 });
@@ -104,12 +111,9 @@ Route::get('/call', function () {
 Route::get('/who', function () {
     return view('pages.who');
 });
-
-
-
-Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', function () {
     return view('profile');
 });
+
+
+

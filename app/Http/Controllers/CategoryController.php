@@ -12,6 +12,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:product-create', ['only' => ['create','store']]);
+         $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:product-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $categories = Categories::all();
@@ -26,7 +33,7 @@ class CategoryController extends Controller
     public function create()
     {
         //$this->authorize('create',Categories::class);
-        return view('Categories.create');
+        return view('Categories.create')->with('success','Item created successfully!');
     }
 
     /**
@@ -43,7 +50,7 @@ class CategoryController extends Controller
             $data['image'] = $request->file('image')->store('public');
         }
         Categories::create($data);
-        return redirect(route('categores.index'));
+        return redirect(route('categores.index'))->with('success','Product created successfully.');;
     }
 
     /**

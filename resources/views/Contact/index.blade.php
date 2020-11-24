@@ -16,7 +16,13 @@
             </tr>
             @foreach($contacts as $contact)
                 <tr>
-                    <td>{{ $contact->id }}</td>
+                    <?php
+                    for($i=1;$i<$contact->id;$i++) ?>
+                <td>
+                <?php
+                    echo $i;
+                    ?>
+                </td>
                     <td>{{ $contact->user_name}} </td>
                     <td>{{ $contact->user_email}}</td>
                     <td>{{ $contact->msg_title}}</td>

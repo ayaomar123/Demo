@@ -11,6 +11,7 @@
                 </ul>
             </div>
         @endif
+        
         <form class="" action="{{route('categores.store')}}" method="post">
             {{--<!--    --><?php=// csrf_token() ?>--}}
             <input type="hidden" name="_token" value=" {{csrf_token()}} ">

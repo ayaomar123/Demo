@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+
     <div class="col-lg-12">
         <!--begin::List Widget 11-->
                 <div class="d-flex align-items-center mb-9 bg-success rounded p-5">

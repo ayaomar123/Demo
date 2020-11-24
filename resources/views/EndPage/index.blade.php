@@ -14,7 +14,13 @@
             </tr>
             @foreach($pages as $page)
                 <tr>
-                    <td>{{ $page->id }}</td>
+                    <?php
+                    for($i=1;$i<$page->id;$i++) ?>
+                <td>
+                <?php
+                    echo $i;
+                    ?>
+                </td>
                     <td>{{ $page->name}} </td>
                     <td>{{ $page->description}}</td>
                     <td> <a href="{{ route('page.edit',[$page->id]) }}">Edit </a></td>

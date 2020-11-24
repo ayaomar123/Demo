@@ -19,7 +19,13 @@
             </tr>
             @foreach($Articles as $Article)
                 <tr>
-                    <td>{{ $Article->id }}</td>
+                    <?php
+                    for($i=1;$i<$Article->id;$i++) ?>
+                <td>
+                <?php
+                    echo $i;
+                    ?>
+                </td>
                     <td>1 </td>
                     <td>{{ $Article->title}}</td>
 {{--                    <td>{{ $Article->slug}}</td>--}}

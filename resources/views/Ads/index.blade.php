@@ -13,7 +13,13 @@
             </tr>
             @foreach($ads as $ad)
                 <tr>
-                    <td>{{ $ad->id }}</td>
+                    <?php
+                    for($i=1;$i<$ad->id;$i++) ?>
+                <td>
+                <?php
+                    echo $i;
+                    ?>
+                </td>
                     <td> <img src="{{ $ad->image }}"width="100" height="100"></td>
                     <td> <a href="{{ route('ads.edit',[$ad->id]) }}">Edit </a></td>
                     <td> <form class="" action="{{ route('ads.delete',[$ad->id]) }}" method="post">

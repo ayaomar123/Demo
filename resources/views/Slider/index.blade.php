@@ -16,7 +16,13 @@
             </tr>
             @foreach($sliders as $slider)
                 <tr>
-                    <td>{{ $slider->id }}</td>
+                    <?php
+                    for($i=1;$i<$slider->id;$i++) ?>
+                <td>
+                <?php
+                    echo $i;
+                    ?>
+                </td>
                     <td>{{ $slider->title}} </td>
                     <td>{{ $slider->link}}</td>
                     <td>{{ $slider->status}}</td>
