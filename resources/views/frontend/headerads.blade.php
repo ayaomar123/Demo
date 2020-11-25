@@ -9,7 +9,9 @@
              </div>
           </div>
          <div class = "col-lg-6 imgAd text-left">
-             <img src="../img/ADS 1.png" alt="Ads1">
+           {{--  @foreach($ads as $ad)
+            <img src="{{asset($ad->image) }}" alt="Ads1">
+             @endforeach --}}
          </div>
      </div>
      </div>

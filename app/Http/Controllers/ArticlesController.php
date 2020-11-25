@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\CategoryController;
 use App\Http\Requests\ArticelRequest;
 use App\models\Articles;
 use App\models\Categories;
@@ -16,24 +17,9 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $Articles = Articles::all();
-        return view('Articles.index',compact('Articles'));
+        $articles = Articles::all();
+        return view('Articles.index',compact('articles'));
     }
-    public function details($slug)
-    {
-        $article = Article::where('slug',$slug)->approved()->published()->first();
-
-        $blogKey = 'blog_' . $article->id;
-
-        if (!Session::has($blogKey)) {
-            $post->increment('view_count');
-            Session::put($blogKey,1);
-        }
-        $randomposts = Post::approved()->published()->take(3)->inRandomOrder()->get();
-        return view('post',compact('post','randomposts'));
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +27,8 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('Articles.create');
+        $categories = Categories::all();
+        return view('Articles.create',compact('categories'));
     }
 
     /**
@@ -57,9 +44,7 @@ class ArticlesController extends Controller
         if ($request->hasFile('image')){
             $data['image'] = $request->file('image')->store('public');
         }
-
         Articles::create($data);
-
         return redirect(route('articles.index'));
     }
 
@@ -112,11 +97,5 @@ class ArticlesController extends Controller
     {
         Articles::query()->find($id)->delete();
         return redirect(route('articles.index'));
-    }
-    public function articleByCategory($slug)
-    {
-        $category = Category::where('slug',$slug)->first();
-        $article = $category->posts()->approved()->published()->get();
-        return view('category',compact('category','article'));
     }
 }

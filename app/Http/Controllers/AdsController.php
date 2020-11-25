@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\AdsRequest;
 use App\Models\Ads;
 use Illuminate\Http\Request;

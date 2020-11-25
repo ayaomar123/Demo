@@ -17,22 +17,8 @@ class Articles extends Model
     protected static function boot()
     {
         parent::boot();
-
         static::creating(function ($article) {
             $article->slug = Str::slug($article->title);
         });
-    }
-
-//    public function setSlugAttribute($slug)
-//    {
-//        if (empty($slug)) {
-//            $slug = $this->attributes['title'] . ' ' . Str::random(10);
-//        }
-//
-//        $this->attributes['slug'] = Str::slug($slug, '-');
-//    }
-    public function getRouteKeyName()
-    {
-        return 'slug';
     }
 }

@@ -34,7 +34,15 @@
                 <label for="status">Article Status</label>
                 <input type="checkbox" name="status" class="form-control" value="1">
             </div>
-
+            <div class="form-group ">
+                    <label for="category">Select Category</label>
+                    <select name="categories[]" id="category" class="form-control show-tick" data-live-search="true" multiple>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Add</button>
         </form>
 

@@ -20,7 +20,6 @@ class CreateCategoriesTable extends Migration
             $table->string('description');
             $table->string('image');
             $table->boolean('status');
-            $table->unsignedBigInteger('category_id');
             $table->timestamps();
 
         });

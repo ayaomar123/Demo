@@ -11,7 +11,6 @@
         <th>Description</th>
         <th>image</th>
         <th>status</th>
-        <th> category_id</th>
         <th> Edit</th>
         <th>Delete</th>
     </tr>
@@ -27,8 +26,12 @@
             <td>{{ $category->name}} </td>
             <td>{{ $category->description}}</td>
             <td> <img src="{{ $category->image }}"width="100" height="100"></td>
-            <td>{{ $category->status}}</td>
-            <td>1</td>
+            <td>@if($category->status == true)
+                <span class="badge bg-blue">Published</span>
+            @else
+                <span class="badge bg-pink">Pending</span>
+            @endif
+        </td>
             <td> <a href="{{ route('categores.edit',[$category->id]) }}">Edit </a></td>
             <td> <form class="" action="{{ route('categores.delete',[$category->id]) }}" method="post">
                     @csrf

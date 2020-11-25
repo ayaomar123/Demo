@@ -155,7 +155,7 @@
                        </div>
                     </div>
                       <div class="col-lg-3">
-                       <img src="img/ADS 2.png" alt="">
+                       <img src="" alt="">
                       </div>
 
             </div>
