@@ -9,5 +9,8 @@
       'ads'=> 'Manage Ads',
       'pages'=> 'Manage Pages',
       'contact'=> 'Manage Contact',
+      'About'=> ' About',
+      'Team'=> '  Team',
+      'Contact'=> ' Contact',
    ];
 ?>

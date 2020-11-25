@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\ArticelRequest;
 use App\models\Articles;
+use App\models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,20 @@ class ArticlesController extends Controller
     {
         $Articles = Articles::all();
         return view('Articles.index',compact('Articles'));
+    }
+    public function details($slug)
+    {
+        $article = Article::where('slug',$slug)->approved()->published()->first();
+
+        $blogKey = 'blog_' . $article->id;
+
+        if (!Session::has($blogKey)) {
+            $post->increment('view_count');
+            Session::put($blogKey,1);
+        }
+        $randomposts = Post::approved()->published()->take(3)->inRandomOrder()->get();
+        return view('post',compact('post','randomposts'));
+
     }
 
     /**
@@ -97,5 +112,11 @@ class ArticlesController extends Controller
     {
         Articles::query()->find($id)->delete();
         return redirect(route('articles.index'));
+    }
+    public function articleByCategory($slug)
+    {
+        $category = Category::where('slug',$slug)->first();
+        $article = $category->posts()->approved()->published()->get();
+        return view('category',compact('category','article'));
     }
 }

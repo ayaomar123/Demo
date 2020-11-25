@@ -7,9 +7,9 @@
         <table  class="table" width="100px">
             <tr>
                 <th>Id</th>
-                <th>Category_id</th>
+                <th>Category</th>
                 <th>Title</th>
-{{--                <th>Slug</th>--}}
+
                 <th>Description</th>
                 <th> Status</th>
                 <th> Image</th>
@@ -17,23 +17,21 @@
                 <th> Edit</th>
                 <th>Delete</th>
             </tr>
-            @foreach($Articles as $Article)
+            @foreach($Articles as $key=>$Article)
                 <tr>
-                    <?php
-                    for($i=1;$i<$Article->id;$i++) ?>
-                <td>
-                <?php
-                    echo $i;
-                    ?>
-                </td>
-                    <td>1 </td>
+                <td>{{ $key + 1 }} </td>
+                    <td>{{!empty($Article->category) ? $Article->category->id:'1'}} </td>
+                    {{-- <td>{{ $Article->category_id}}</td> --}}
                     <td>{{ $Article->title}}</td>
-{{--                    <td>{{ $Article->slug}}</td>--}}
                     <td>
-                        <p> {{ substr($Article->description, 0, 100) }}</p>
-                        <a href="{{ route('articles.show', $Article->slug) }}" class="btn btn-primary btn-block">Read More</a>
+                        <p>{{$Article->description }}</p>
                     </td>
-                    <td>{{ $Article->status}}</td>
+                    <td>@if($Article->status == true)
+                        <span class="badge bg-blue">Published</span>
+                    @else
+                        <span class="badge bg-pink">Pending</span>
+                    @endif
+                </td>
                     <td> <img src="{{ $Article->image }}"width="100" height="100"></td>
 
 
