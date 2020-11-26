@@ -19,6 +19,6 @@ class Categories extends Model
     }
     public function articles()
     {
-        return $this->belongsToMany('App\Models\Articles')->withTimestamps();
+        return $this->hasMany('App\Models\Articles','category_id');
     }
 }

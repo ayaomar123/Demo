@@ -39,12 +39,19 @@ class ArticlesController extends Controller
      */
     public function store(ArticelRequest $request)
     {
-        $data = $request->validated();
+        // $data = request();
 
-        if ($request->hasFile('image')){
-            $data['image'] = $request->file('image')->store('public');
-        }
-        Articles::create($data);
+        // if ($request->hasFile('image')){
+        //     $data['image'] = $request->file('image')->store('public');
+        // }
+        Articles::create([
+            'category_id'=>$request->category_id,
+            'title'=>$request->title,
+            'description' =>$request->description,
+            'status'=>$request->status,
+            'image'=>$request->image,
+        ]);
+        //$articles->category()->attach($request->category);
         return redirect(route('articles.index'));
     }
 
@@ -97,5 +104,11 @@ class ArticlesController extends Controller
     {
         Articles::query()->find($id)->delete();
         return redirect(route('articles.index'));
+    }
+    public function articleByCategory($slug)
+    {
+        $category = Category::where('slug',$slug)->first();
+        $articles = $category->articles()->approved()->published()->get();
+        return view('category',compact('category','articles'));
     }
 }

@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title',"Article Page")
 @section('content')
     <div class="container">
 <h1>Categories</h1>

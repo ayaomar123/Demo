@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <form class="" action="{{route('articles.store')}}" method="post">
+        <form class="" action="{{route('articles.store')}}" method="post" enctype="multipart/form-data">
             {{--<!--    --><?php=// csrf_token() ?>--}}
             <input type="hidden" name="_token" value=" {{csrf_token()}} ">
 
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group ">
                     <label for="category">Select Category</label>
-                    <select name="categories[]" id="category" class="form-control show-tick" data-live-search="true" multiple>
+                    <select name="category_id" id="category" class="form-control show-tick" data-live-search="true" multiple>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach

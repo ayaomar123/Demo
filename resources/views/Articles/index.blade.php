@@ -18,7 +18,7 @@
             @foreach($articles as $key=>$article)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $article->category_id}}</td>
+                    <td>{{ $article->category->name}}</td>
                     <td>{{ $article->title}}</td>
                     <td><p>{{$article->description }}</p></td>
                     <td>
@@ -28,7 +28,7 @@
                         <span class="badge bg-pink">Pending</span>
                         @endif
                     </td>
-                    <td><img src="{{ $article->image }}"width="100" height="100"></td>
+                    <td><img src="{{'http://127.0.0.1:8000/storage/'.$article->image }}"width="100" height="100"></td>
                     <td><a href="{{ route('articles.edit',$article->id) }}">Edit </a></td>
                     <td>
                         <form class="" action="{{ route('articles.delete',[$article->id]) }}" method="post">
