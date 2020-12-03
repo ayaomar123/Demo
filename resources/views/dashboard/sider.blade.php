@@ -8,7 +8,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
 		<!--begin::Fonts-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Page Vendors Styles(used by this page)-->
 		<link href="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
@@ -21,6 +20,7 @@
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
 		<link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
+		<link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -134,3 +134,4 @@
 					<!--end::Aside Menu-->
 				</div>
 				<!--end::Aside-->
+

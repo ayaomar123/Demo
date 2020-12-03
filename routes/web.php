@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PagesController;
@@ -28,6 +28,12 @@ Route::get('/index/{locale}', function ($locale) {
 */
 Auth::routes();
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::get('/', function () {
+    $categories = \App\Models\Category::first();
+    $articles = \App\Models\Article::all();
+    $categories->articles()->attach($articles);
+    dd($articles);
+});
 
 Route::middleware(['auth'])->prefix('/home')->group(function () {
     Route::get('/', [AdminController::class,'index']);
@@ -41,22 +47,23 @@ Route::get('/home/{locale}', function ($locale) {
 });
 
 Route::group(['prefix' => 'categories'], function(){
-    Route::get('/',[CategoryController::class, 'index'])->name('categores.index');
-    Route::get('/create', [CategoryController::class, 'create'])->name('categores.create');
-    Route::post('/',  [CategoryController::class, 'store'])->name('categores.store');
-    Route::get('/{id}', [CategoryController::class, 'edit'])->name('categores.edit');
-    Route::post('/{id}/update', [CategoryController::class, 'update'])->name('categores.update');
-    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categores.delete');
-  });
+    Route::get('/',[CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/',  [CategoryController::class, 'store'])->name('categories.store');
+    Route::post('/show',  [CategoryController::class, 'show'])->name('categories.show');
+    Route::get('/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::post('/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
 
 Route::group(['prefix' => 'articles'], function(){
-    Route::get('/',[ArticlesController::class, 'index'])->name('articles.index');
-    Route::get('/create', [ArticlesController::class, 'create'])->name('articles.create');
-    Route::post('/',  [ArticlesController::class, 'store'])->name('articles.store');
-    Route::post('/show',  [ArticlesController::class, 'show'])->name('articles.show');
-    Route::get('/{id}', [ArticlesController::class, 'edit'])->name('articles.edit');
-    Route::post('/{id}/update', [ArticlesController::class, 'update'])->name('articles.update');
-    Route::delete('/{id}', [ArticlesController::class, 'destroy'])->name('articles.delete');
+    Route::get('/',[ArticleController::class, 'index'])->name('articles.index');
+    Route::get('/create', [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('/',  [ArticleController::class, 'store'])->name('articles.store');
+    Route::post('/show',  [ArticleController::class, 'show'])->name('articles.show');
+    Route::get('/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::post('/{id}/update', [ArticleController::class, 'update'])->name('articles.update');
+    Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('articles.delete');
 });
 
 Route::group(['prefix' => 'slider'], function(){

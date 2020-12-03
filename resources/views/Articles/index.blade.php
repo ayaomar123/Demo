@@ -1,40 +1,49 @@
 @extends('layouts.admin')
+@section('title', 'Manage Aticle')
 @section('content')
     <div class="container">
         <h1>Articles</h1>
-        <a href="{{route('articles.create')}}"class="btn btn-sm btn-primary mb-3 ">Add Article</a>
-        <table  class="table" width="100px">
+        <a href="{{ route('articles.create') }}" class="btn btn-sm btn-primary mb-3 ">Add Article</a>
+        <table class="table table-striped" width="100px">
             <tr>
-                <th>Id</th>
-                <th>Category</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th> Status</th>
-                <th> Image</th>
-                <th> Edit</th>
-                <th>Delete</th>
+                <th scope="col">Id</th>
+                <th scope="col">Category</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col"> Status</th>
+                <th scope="col"> Image</th>
+                <th scope="col"> Edit</th>
+                <th scope="col">Delete</th>
             </tr>
 
-            @foreach($articles as $key=>$article)
+            @foreach ($articles as $key => $article)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $article->category->name}}</td>
-                    <td>{{ $article->title}}</td>
-                    <td><p>{{$article->description }}</p></td>
+                    <th scope="row">{{ $key + 1 }}</th>
                     <td>
-                        @if($article->status == true)
-                        <span class="badge bg-blue">Published</span>
+                        @foreach ($article->categories as $category)
+                            {{ $category->name }},
+                        @endforeach
+                    </td>
+                    {{-- <td>{{ $article->categories->name }}</td>
+                    --}}
+                    <td>{{ $article->title }}</td>
+                    <td>
+                        <p>{{ $article->description }}</p>
+                    </td>
+                    <td>
+                        @if ($article->status == true)
+                            <span class="">Published</span>
                         @else
-                        <span class="badge bg-pink">Pending</span>
+                            <span class="">Pending</span>
                         @endif
                     </td>
-                    <td><img src="{{'http://127.0.0.1:8000/storage/'.$article->image }}"width="100" height="100"></td>
-                    <td><a href="{{ route('articles.edit',$article->id) }}">Edit </a></td>
+                    <td><img src="{{ $article->image }}" width="100" height="100"></td>
+                    <td><a href="{{ route('articles.edit', $article->id) }}">Edit </a></td></i>
                     <td>
-                        <form class="" action="{{ route('articles.delete',[$article->id]) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit"class="btn btn-danger" name="button">Delete</button>
+                        <form class="" action="{{ route('articles.delete', [$article->id]) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger" name="button">Delete</button>
                         </form>
                     </td>
 

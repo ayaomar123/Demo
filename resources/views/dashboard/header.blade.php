@@ -242,3 +242,4 @@
     </div>
     <!--end::Container-->
 </div>
+<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">

@@ -362,7 +362,8 @@ text-align: right;
     border-radius: 50%;
 }
 footer{
-  background-color: #173460 !important;  
+  background-color: #173460 !important;
+  padding-left: 0px;
 }
 footer p {
     padding: 10px;

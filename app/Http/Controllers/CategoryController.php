@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
-use App\models\Categories;
+use App\models\Category;
+use App\models\Article;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,7 +22,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         return view('Categories.index',compact('categories'));
     }
 
@@ -32,8 +33,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create',Categories::class);
-        return view('Categories.create')->with('success','Item created successfully!');
+        $articles = Article::all();
+        return view('Categories.create',compact('articles'));
     }
 
     /**
@@ -42,15 +43,23 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-
-        if ($request->hasFile('image')){
-            $data['image'] = $request->file('image')->store('public');
-        }
-        Categories::create($data);
-        return redirect(route('categores.index'))->with('success','Product created successfully.');;
+        $request->validate([
+            //'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            
+        ]);
+        $category = Category::create([    
+            'name'=>$request->name,
+            'description' =>$request->description,
+            'status'=>$request->status,
+            'image'=>$request->image,
+        ]);
+        $category->articles()->attach($request->article_id);
+        return redirect(route('categories.index'))->with('success','Product created successfully.');;
     }
 
     /**
@@ -72,7 +81,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Categories::find($id);
+        $category = Category::find($id);
         return view('Categories.edit',compact('category'));
 
     }
@@ -87,8 +96,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-       Categories::query()->find($id)->update($data);
-        return redirect(route('categores.index'));
+        Category::query()->find($id)->update($data);
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -99,7 +108,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-       Categories::query()->find($id)->delete();
-        return redirect(route('categores.index'));
+        $category =Category::where('id',$id)->first();
+
+    if ($category != null) {
+        $category->delete();
+        return redirect()->route('categories.index')->with(['message'=> 'Successfully deleted!!']);
     }
+    return redirect()->route('categories.index')->with(['message'=> 'Wrong ID!!']);
+    }
+    
 }

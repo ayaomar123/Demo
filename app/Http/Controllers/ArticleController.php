@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\CategoryController;
-use App\Http\Requests\ArticelRequest;
-use App\models\Articles;
-use App\models\Categories;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class ArticlesController extends Controller
+use Illuminate\Http\Request;
+use App\models\Article;
+use App\Http\Controllers\CategoryController;
+use App\models\Category;
+use App\Http\Controllers\Session;
+
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,11 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Articles::all();
+        $articles = Article::all();
+        //$categories = Category::latest()->get();
         return view('Articles.index',compact('articles'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +29,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         return view('Articles.create',compact('categories'));
     }
 
@@ -37,22 +39,24 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticelRequest $request)
+    public function store(Request $request)
     {
-        // $data = request();
-
-        // if ($request->hasFile('image')){
-        //     $data['image'] = $request->file('image')->store('public');
-        // }
-        Articles::create([
-            'category_id'=>$request->category_id,
+        //return $request->category_id;
+        $request->validate([
+            //'category_id' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            
+        ]);
+        $article = Article::create([    
             'title'=>$request->title,
             'description' =>$request->description,
             'status'=>$request->status,
             'image'=>$request->image,
         ]);
-        //$articles->category()->attach($request->category);
-        return redirect(route('articles.index'));
+        $article->categories()->attach($request->category_id);
+        return redirect(route('articles.index'))->with('message','Article Added Successfully!'); 
     }
 
     /**
@@ -61,9 +65,9 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Articles $Articles)
+    public function show($id)
     {
-        //return view('Articles.show')->withArticles($Articles);
+        //
     }
 
     /**
@@ -74,8 +78,7 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        $articles = Articles::find($id);
-
+        $articles = Article::find($id);
         return view('Articles.edit',compact('articles'));
     }
 
@@ -88,9 +91,8 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($id);
         $data = $request->all();
-        Articles::query()->find($id)->update($data);
+        Article::query()->find($id)->update($data);
         return redirect(route('articles.index'));
     }
 
@@ -102,13 +104,8 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        Articles::query()->find($id)->delete();
-        return redirect(route('articles.index'));
+        Article::query()->find($id)->delete();
+        return redirect(route('articles.index'))->with('message','Article Deleted Successfully!'); 
     }
-    public function articleByCategory($slug)
-    {
-        $category = Category::where('slug',$slug)->first();
-        $articles = $category->articles()->approved()->published()->get();
-        return view('category',compact('category','articles'));
-    }
+    
 }

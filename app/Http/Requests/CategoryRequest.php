@@ -26,7 +26,6 @@ class CategoryRequest extends FormRequest
         return [
             'name'=>'required',
             'description'=>'required',
-            'status'=>'required',
             'image'=>'required'
         ];
     }

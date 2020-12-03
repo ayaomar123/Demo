@@ -1,18 +1,11 @@
 
 @include('dashboard.sider')
-
-<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-
-    @include('dashboard.header')
-
-
-
-<!--begin::Content-->
-<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    @yield('content')
-
-</div>
-<!--end::Content-->
-
-
+@yield('title')
+@include('dashboard.header')
+@if(Session::has('message'))
+<p class="alert
+{{ Session::get('alert-class', 'alert-secondary') }}">{{Session::get('message') }}</p>
+@endif
+@yield('content')
 @include('dashboard.footer')
+@yield('script')

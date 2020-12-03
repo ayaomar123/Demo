@@ -12,15 +12,14 @@
 </div>
 
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
         @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
         @endforeach
-        </ul>
-    </div>
+    </ul>
+</div>
 @endif
 
 
@@ -48,7 +47,4 @@
     </div>
 </div>
 {!! Form::close() !!}
-
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 @endsection

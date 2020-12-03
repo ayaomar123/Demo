@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Categories extends Model
+class Category extends Model
 {
     protected $fillable = [ 'name','description','image','status'];
 
@@ -17,8 +17,9 @@ class Categories extends Model
             $category->slug = Str::slug($category->name);
         });
     }
+
     public function articles()
     {
-        return $this->hasMany('App\Models\Articles','category_id');
+        return $this->belongsToMany('App\Models\Article','category_article');
     }
 }

@@ -23,10 +23,10 @@
                 <label for="description">Article Description</label>
                 <textarea name="description" rows="8" cols="80" class="form-control"> {{ str_replace('-',' ',$articles->description) }} </textarea>
             </div>
-
+            <img id="out" style="width: 300px">
             <div class="form-group">
                 <label for="image">Article Image</label>
-                <input id="image" type="file" name="image" value="{{ $articles->image }}">
+                <input id="image" type="file" name="image" value="{{ $articles->image }}" onchange="loadFile(event)">
             </div>
 
             <div class="form-group">
@@ -40,4 +40,10 @@
         </form>
 
     </div>
+    <script>
+        var loadFile = function(event) {
+            var out = document.getElementById('out');
+            out.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
 @endsection
