@@ -1,62 +1,56 @@
-@extends('layouts.admin')
-@section('title', 'Category Page')
-@section('content')
-    <div class="container">
-        <h1>Create Category</h1>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
 
-        <form class="" action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-5">
-                <label for="name">Category Name</label>
-                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp"
-                    value="{{ old('name') }}">
-            </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-5">
-                <label for="description">Category Description</label>
-                <input type="text" name="description" class="form-control" id="description" aria-describedby="emailHelp"
-                    value="{{ old('description') }}">
-            </div>
-            <img id="out" style="width: 300px">
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-5">
-                <label for="image">Choose Image</label>
-                <input id="image" type="file" name="image" value="{{ old('image') }}" onchange="loadFile(event)">
-            </div>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-5">
-                <label for="status">Category Status</label>
-                <input type="checkbox" name="status" class="form-control" value="1">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-5">
-                <label for="article">Select Article</label>
-                <select name="article_id[]" id="article" class="form-control show-tick" data-live-search="true" multiple>
-                    @foreach($articles as $article)
-                        <option value="{{ $article->id }}">{{ $article->title }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
+  <title>Create Category</title>
 
-            <button type="submit" class="btn btn-primary">Add</button>
-            <a class="btn btn-default" href="{{ asset('categories') }}">cancel</a>
-        </form>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 
-    </div>
-@endsection
-<script>
-    var loadFile = function(event) {
-        var out = document.getElementById('out');
-        out.src = URL.createObjectURL(event.target.files[0]);
-    };
+</head>
+ 
+<body>
+ 
+<div class="container mt-5">
+   
+    <form id="add-category" method="post" action="{{ url('categories') }}"> 
+      @csrf
+      <div class="form-group">
+        <label for="formGroupExampleInput">Name</label>
+        <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Please enter name">
+        <span class="text-danger">{{ $errors->first('name') }}</span>
+      </div> 
 
-</script>
+      <div class="form-group">
+        <label for="message">Description</label>
+        <textarea class="form-control" name="description" placeholder="Please enter description"></textarea>
+        <span class="text-danger">{{ $errors->first('description') }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="formGroupExampleInput">Image</label>
+        <input type="file" name="image" class="form-control" id="formGroupExampleInput" placeholder="Please enter image">
+        <span class="text-danger">{{ $errors->first('image') }}</span>
+      </div> 
+
+      <div class="form-group">
+        <label for="formGroupExampleInput">status</label>
+        <label for="status">Article status</label><br>
+                <input type="radio" id="published" name="status" value="1">
+                <label for="published">published</label><br>
+                <input type="radio" id="pending" name="status" value="0" checked="checked">
+                <label for="pending">pending</label><br>
+      </div> 
+
+      <div class="form-group">
+       <button type="submit" class="btn btn-success" id="btn-send">Submit</button>
+      </div>
+    </form>
+ 
+</div>
+</body>
+</html>

@@ -5,6 +5,8 @@ use App\Http\Requests\CategoryRequest;
 use App\models\Category;
 use App\models\Article;
 use Illuminate\Http\Request;
+use Validator,Redirect,Response;
+use DataTables;
 
 class CategoryController extends Controller
 {
@@ -20,10 +22,26 @@ class CategoryController extends Controller
         //  $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
         //  $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
-        return view('Categories.index',compact('categories'));
+        if(request()->ajax()) {
+            return datatables()->of(Category::select([
+                'id','name' , 'description', 'image' , 'status'
+            ]))
+            ->addIndexColumn()
+            ->addColumn('action', function($data){
+                   
+                   $editUrl = url('categories/'.$data->id);
+                   $btn = '<a href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary btn-sm">Edit</a>';
+
+                   $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger btn-sm delete">Delete</a>';
+
+                    return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return view('categories.index');
     }
 
     /**
@@ -33,8 +51,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $articles = Article::all();
-        return view('Categories.create',compact('articles'));
+        return view('categories.create');
+
     }
 
     /**
@@ -45,21 +63,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            //'category_id' => 'required',
+        $data = request()->validate([
             'name' => 'required',
             'description' => 'required',
             'image' => 'required',
-            
-        ]);
-        $category = Category::create([    
-            'name'=>$request->name,
-            'description' =>$request->description,
-            'status'=>$request->status,
-            'image'=>$request->image,
-        ]);
-        $category->articles()->attach($request->article_id);
-        return redirect(route('categories.index'))->with('success','Product created successfully.');;
+            ]);
+           
+            $check = Category::create($data);
+            return Redirect::to("categories")->withSuccess('Great! categories has been inserted');
+    
     }
 
     /**
@@ -81,8 +93,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('Categories.edit',compact('category'));
+        $data['category'] = Category::where('id', $id)->first();
+
+        if(!$data['category']){
+           return "sorry";
+        }
+        return view('categories.edit', $data);
+
 
     }
 
@@ -95,9 +112,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        Category::query()->find($id)->update($data);
-        return redirect(route('categories.index'));
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            ]);
+    
+            $check = Category::where('id', $request->id)->update($data);
+            return Redirect::to("categories")->withSuccess('Great! Category has been updated');
     }
 
     /**
@@ -107,14 +129,13 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    
     {
-        $category =Category::where('id',$id)->first();
 
-    if ($category != null) {
-        $category->delete();
-        return redirect()->route('categories.index')->with(['message'=> 'Successfully deleted!!']);
-    }
-    return redirect()->route('categories.index')->with(['message'=> 'Wrong ID!!']);
+    // dd( Category::query()->find($id)->delete());
+         Category::query()->find($id)->delete();
+ 
+         return  response()->json(['success' => 'success']);
     }
     
 }

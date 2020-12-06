@@ -1,6 +1,7 @@
 
 @include('dashboard.sider')
 @yield('title')
+@yield('style')
 @include('dashboard.header')
 @if(Session::has('message'))
 <p class="alert

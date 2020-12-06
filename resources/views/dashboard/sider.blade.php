@@ -20,7 +20,6 @@
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
 		<link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
-		<link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->

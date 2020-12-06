@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\models\Article;
 use App\Http\Controllers\CategoryController;
 use App\models\Category;
-use App\Http\Controllers\Session;
+use DataTables;
 
 class ArticleController extends Controller
 {
@@ -15,8 +15,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
         $articles = Article::all();
         //$categories = Category::latest()->get();
         return view('Articles.index',compact('articles'));
@@ -107,5 +108,59 @@ class ArticleController extends Controller
         Article::query()->find($id)->delete();
         return redirect(route('articles.index'))->with('message','Article Deleted Successfully!'); 
     }
-    
-}
+    public function getArticles(Request $request){
+
+        ## Read value
+        $draw = $request->get('draw');
+        $start = $request->get("start");
+        $rowperpage = $request->get("length"); // Rows display per page
+   
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr = $request->get('columns');
+        $order_arr = $request->get('order');
+        $search_arr = $request->get('search');
+   
+        $columnIndex = $columnIndex_arr[0]['column']; // Column index
+        $columnName = $columnName_arr[$columnIndex]['data']; // Column name
+        $columnSortOrder = $order_arr[0]['dir']; // asc or desc
+        $searchValue = $search_arr['value']; // Search value
+   
+        // Total records
+        $totalRecords = Article::select('count(*) as allcount')->count();
+        $totalRecordswithFilter = Article::select('count(*) as allcount')->where('name', 'like', '%' .$searchValue . '%')->count();
+   
+        // Fetch records
+        $records = Article::orderBy($columnName,$columnSortOrder)
+          ->where('Article.title', 'like', '%' .$searchValue . '%')
+          ->select('article.*')
+          ->skip($start)
+          ->take($rowperpage)
+          ->get();
+   
+        $data_arr = array();
+        
+        foreach($records as $record){
+           $id = $record->id;
+           $username = $record->title;
+           $name = $record->description;
+           $email = $record->status;
+   
+           $data_arr[] = array(
+             "id" => $id,
+             "title" => $title,
+             "description" => $description,
+             "status" => $status
+           );
+        }
+   
+        $response = array(
+           "draw" => intval($draw),
+           "iTotalRecords" => $totalRecords,
+           "iTotalDisplayRecords" => $totalRecordswithFilter,
+           "aaData" => $data_arr
+        );
+   
+        echo json_encode($response);
+        exit;
+      }
+   }

@@ -1,49 +1,50 @@
-@extends('layouts.admin')
-@section('title', 'Edit Category Page')
-@section('content')
-    <div class="container">
-        <h1>Edit Category</h1>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <form class="" action="{{ route('categories.update', [$category->id]) }}" method="post">
-            {{--
-            <!--    --><?php=// csrf_token() ?>--}}
-            <input type="hidden" name="_token" value=" {{ csrf_token() }} ">
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
 
-            <div class="form-group">
-                <label for="name">Category Name</label>
-                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp"
-                    value="{{ $category->name }}">
-            </div>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            <div class="form-group">
-                <label for="description">Category Description</label>
-                <input type="text" name="description" class="form-control" id="description" aria-describedby="emailHelp"
-                    value="{{ $category->description }}">
-            </div>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-            <div class="form-group">
-                <label for="image">Choose Image</label>
-                <input id="image" type="file" name="image">
-            </div>
+  <title>Edit Category</title>
 
-            <div class="form-group">
-                <label for="status">Category Status</label>
-                <input type="checkbox" name="status" class="form-control" id="status" aria-describedby="emailHelp"
-                    value="{{ $category->status }}">
-            </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 
+</head>
+ 
+<body>
+ 
+<div class="container mt-5">
+   
+    <form id="add-category" method="post" action="{{route('categories.update',[$category->id])}}"> 
+      @csrf
+      
+      <input type="hidden" name="id" class="form-control" value="{{ $category->id }}" id="formGroupExampleInput">
 
-            <button type="put" class="btn btn-primary">Update</button>
-            <a class="btn btn-default" href="{{ asset('categories') }}">cancel</a>
-        </form>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Name</label>
+        <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Please enter title" value="{{ $category->title }}">
+        <span class="text-danger">{{ $errors->first('name') }}</span>
+      </div> 
 
-    </div>
-@endsection
+      <div class="form-group">
+        <label for="message">Description</label>
+        <textarea name="description" class="form-control" id="description" placeholder="Please enter description">{{ $category->description }}</textarea>
+        <span class="text-danger">{{ $errors->first('description') }}</span>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Image</label>
+        <input type="file" name="image" class="form-control" id="formGroupExampleInput">
+        <span class="text-danger">{{ $errors->first('image') }}</span>
+      </div>
+      
+
+      <div class="form-group">
+       <button type="submit" class="btn btn-success" id="btn-send">Submit</button>
+      </div>
+    </form>
+ 
+</div>
+</body>
+</html>

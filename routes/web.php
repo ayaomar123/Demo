@@ -50,7 +50,7 @@ Route::group(['prefix' => 'categories'], function(){
     Route::get('/',[CategoryController::class, 'index'])->name('categories.index');
     Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/',  [CategoryController::class, 'store'])->name('categories.store');
-    Route::post('/show',  [CategoryController::class, 'show'])->name('categories.show');
+    //Route::post('/show',  [CategoryController::class, 'show'])->name('categories.show');
     Route::get('/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::post('/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
@@ -63,7 +63,7 @@ Route::group(['prefix' => 'articles'], function(){
     Route::post('/show',  [ArticleController::class, 'show'])->name('articles.show');
     Route::get('/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::post('/{id}/update', [ArticleController::class, 'update'])->name('articles.update');
-    Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('articles.delete');
+    Route::get('/{id}', [ArticleController::class, 'destroy'])->name('articles.delete');
 });
 
 Route::group(['prefix' => 'slider'], function(){
