@@ -3,23 +3,23 @@
 	<!--begin::Head-->
 	<head><base href="">
 		<meta charset="utf-8" />
-		<title>@yield('title') </title>
+		<title>Mange | @yield('title') </title>
 		<meta name="description" content="Updates and statistics" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
 		<!--begin::Fonts-->
 		<!--end::Fonts-->
 		<!--begin::Page Vendors Styles(used by this page)-->
-		<link href="../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendors Styles-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="../assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="../assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="../assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="{{asset('assets/media/logos/favicon.ico')}}" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -29,7 +29,7 @@
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="index.html">
-				<img alt="Logo" class="w-45px" src="../assets/media/logos/logo-letter-13.png" />
+				<img alt="Logo" class="w-45px" src="{{asset('assets/media/logos/logo-letter-13.png')}}" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -72,7 +72,7 @@
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="{{url('home')}}" class="brand-logo">
-							<img alt="Logo" class="w-65px" src="../assets/media/logos/logo-letter-13.png" />
+							<img alt="Logo" class="w-65px" src="{{asset('assets/media/logos/logo-letter-13.png')}}" />
 						</a>
 						<!--end::Logo-->
 					</div>
@@ -102,10 +102,37 @@
 									</a>
 								</li>
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-									<a href="{{url('categories')}}" class="menu-link menu-toggle">
-										<i class="menu-icon flaticon2-browser-2"></i>
-										<span class="menu-text">Manage Categories</span>
+									<a href="javascript:;" class="menu-link menu-toggle">
+										<i class="menu-icon flaticon2-telegram-logo"></i>
+										<span class="menu-text">Category</span>
+										<i class="menu-arrow"></i>
 									</a>
+									<div class="menu-submenu" kt-hidden-height="160" style="">
+										<i class="menu-arrow"></i>
+										<ul class="menu-subnav">
+											<li class="menu-item menu-item-parent" aria-haspopup="true">
+												<span class="menu-link">
+													<span class="menu-text">Categories</span>
+												</span>
+											</li>
+											<li class="menu-item" aria-haspopup="true">
+												<a href="{{url('categories/create')}}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Create</span>
+												</a>
+											</li>
+											<li class="menu-item" aria-haspopup="true">
+											<a href="{{route('categories.index')}}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Show</span>
+												</a>
+											</li>
+										</ul>
+									</div>
 								</li>
 								<li class="menu-item" aria-haspopup="true">
 									<a href="{{url('articles')}}" class="menu-link">

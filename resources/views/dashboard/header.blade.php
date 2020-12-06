@@ -1,4 +1,3 @@
-<html  lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar'? 'rtl' : 'ltr' }}">
 <div id="kt_header" class="header header-fixed">
     <!--begin::Container-->
     <div class="container-fluid d-flex align-items-stretch justify-content-between">
@@ -9,11 +8,18 @@
                 <!--begin::Header Nav-->
                 <ul class="menu-nav">
 
-                    <li class="menu-item menu-item-active" aria-haspopup="true">
+                    {{-- <li class="menu-item menu-item-active" aria-haspopup="true">
                         <a href="{{url('home')}}" class="menu-link">
                             <span class="menu-text">{{ __('lang.home') }}
 							</span>
                         </a>
+					</li> --}}
+					
+					<li class=" menu-item " aria-haspopup="true">
+                        <div class="container" style="color: rgb(19, 73, 143)">
+								<span class="text-center"> @yield('span')</span>
+							
+						</div>
                     </li>
                 </ul>
                 <!--end::Header Nav-->
@@ -29,7 +35,7 @@
                 <!--begin::Toggle-->
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-                        <img class="h-20px w-20px rounded-sm" src="../assets/media/svg/flags/226-united-states.svg" alt="" />
+                        <img class="h-20px w-20px rounded-sm" src="{{asset('assets/media/svg/flags/226-united-states.svg')}}" alt="" />
                     </div>
                 </div>
                 <!--end::Toggle-->
@@ -41,7 +47,7 @@
                         <li class="navi-item">
                             <a href="{{url('/home')}}" class="navi-link">
                                 <span class="symbol symbol-20 mr-3">
-                                    <img src="../assets/media/svg/flags/226-united-states.svg" alt="" />
+                                    <img src="{{asset('assets/media/svg/flags/226-united-states.svg')}}" alt="" />
                                 </span>
                                 <span class="navi-text">English</span>
                             </a>
@@ -51,7 +57,7 @@
                         <li class="navi-item active">
                         <a href="{{url('/home/ar')}}" class="navi-link">
                                 <span class="symbol symbol-20 mr-3">
-                                    <img src="../assets/media/svg/flags/128-spain.svg" alt="" />
+                                    <img src="{{asset('assets/media/svg/flags/128-spain.svg')}}" alt="" />
                                 </span>
                                 <span class="navi-text">Arabic</span>
                             </a>

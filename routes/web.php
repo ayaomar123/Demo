@@ -28,13 +28,16 @@ Route::get('/index/{locale}', function ($locale) {
 */
 Auth::routes();
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-Route::get('/', function () {
+/* Route::get('/', function () {
     $categories = \App\Models\Category::first();
     $articles = \App\Models\Article::all();
-    $categories->articles()->attach($articles);
     dd($articles);
-});
+})   $categories->articles()->attach($articles);
+ ; */
 
+Route::get('/', function () {
+    return view('layouts.admin');
+});
 Route::middleware(['auth'])->prefix('/home')->group(function () {
     Route::get('/', [AdminController::class,'index']);
     Route::resource('roles', RoleController::class);

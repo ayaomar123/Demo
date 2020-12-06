@@ -1,7 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head>
-  <meta charset="utf-8">
+@extends('layouts.admin')
+<title>Create Category</title>
+@section('span')
+    <h3>Create Category</h3>
+@endsection
+@section('content')
+    
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -48,9 +52,9 @@
 
       <div class="form-group">
        <button type="submit" class="btn btn-success" id="btn-send">Submit</button>
+       <a class='btn btn-light' href='{{route("categories.index")}}'>Cancel</a>
       </div>
     </form>
  
 </div>
-</body>
-</html>
+@endsection

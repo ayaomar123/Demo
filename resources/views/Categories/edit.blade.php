@@ -1,6 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head>
+@extends('layouts.admin')
+<title>Edit Category</title>
+@section('span')
+   <h4> Edit Category</h4>
+@endsection
+@section('content')
+    
+
   <meta charset="utf-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,9 +47,10 @@
 
       <div class="form-group">
        <button type="submit" class="btn btn-success" id="btn-send">Submit</button>
+       <a class='btn btn-light' href='{{route("categories.index")}}'>Cancel</a>
+
       </div>
     </form>
  
 </div>
-</body>
-</html>
+@endsection

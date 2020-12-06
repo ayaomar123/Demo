@@ -32,9 +32,9 @@ class CategoryController extends Controller
             ->addColumn('action', function($data){
                    
                    $editUrl = url('categories/'.$data->id);
-                   $btn = '<a href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary btn-sm">Edit</a>';
+                   $btn = '<a href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary btn-lg">Edit</a>';
 
-                   $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger btn-sm delete">Delete</a>';
+                   $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger btn-lg delete">Delete</a>';
 
                     return $btn;
             })
