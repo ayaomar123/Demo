@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 <title>Create Category</title>
+@section('li')
+<a href="{{route('categories.create')}}"
+title="Create Category">Create</a>
+@endsection
 @section('span')
     <h3>Create Category</h3>
 @endsection

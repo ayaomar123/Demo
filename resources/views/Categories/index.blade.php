@@ -1,24 +1,30 @@
 @extends('layouts.admin')
 <title>Category</title>
 @section('span')
-    <h4>Mange Category</h4>
+    <nav aria-label="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Library</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Data</li>
+      
+    </nav>
 @endsection
 @section('content')
 
     <body>
         <div class="container mt-4">
             <div class="mb-4">
-               <h2>Filter Elements</h2>
-               <a  href="#" class="text-center btn mb-1"
-                style="background:rgb(128, 139, 151);color:white" ;>Name</a>
-            <a href="#" class="text-center btn mb-1"
-                style="background:rgb(73, 110, 158);color:white" ;>Status</a>
-            <a href="#" class="text-center btn mb-1"
-                style="background:rgb(2, 64, 146);color:white" ;>Id</a>
-            <a href="{{ url('categories/create') }}" class="text-center btn mb-1"
-                style="background:rgb(19, 143, 29);color:white;float: right;" ;>Create Category</a>
+                <h2 class="text-content text-center" style="width: 100%;height:40px; background:#1F1E2E;color:whitesmoke">Manage Category</h2>
+                <input type="text" class="searchEmail" onkeyup="myFunction()" id="searchByName" placeholder="Search for Name.." title="Type in a name">
+
+                <select name="searchByStatus" id="searchByStatus" class="btn btn-sm" style="background: #a5c1f8fa">
+                    <option value="">Select Status</option>
+                    <option value="1">Active</option>
+                    <option value="0">Dis Active</option>
+                </select>
+                <a href="{{ url('categories/create') }}" class="text-center btn mb-1"
+                    style="background:rgb(19, 143, 29);color:white;float: right;" ;>Create Category</a>
             </div>
-                
+
             <table class="table table-bordered" id="laravel-datatable-crud">
                 <thead>
                     <tr style="background:#a5c1f8fa">
@@ -58,6 +64,7 @@
                 ajax: {
                     url: "{{ url('categories') }}",
                     type: 'GET',
+
                 },
                 columns: [{
                         data: 'id',
@@ -86,6 +93,7 @@
                         searchable: false
                     },
 
+
                 ]
             });
         });
@@ -109,6 +117,32 @@
             });
 
         });
+        $(".searchEmail").keyup(function(){
+
+table.draw();
+
+});
+//         function myFunction() {
+//   // Declare variables
+//   var input, filter, table, tr, td, i, txtValue;
+//   input = document.getElementById("searchByName").value;
+//   //filter = input.value.toUpperCase();
+//   table = document.getElementById("laravel-datatable-crud");
+//   tr = table.getElementsByTagName("tr");
+
+//   for (i = 0; i < tr.length; i++) {
+//     td = tr[i].getElementsByTagName("td")[0];
+//     if (td) {
+//       txtValue = td.textContent || td.innerText;
+//       if (txtValue.toUpperCase().indexOf(input) > -1) {
+//         tr[i].style.display = "";
+//       } else {
+//         tr[i].style.display = "none";
+//       }
+//     }
+//   }
+// }
+
 
     </script>
 

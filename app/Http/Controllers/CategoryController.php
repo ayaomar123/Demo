@@ -25,6 +25,9 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         if(request()->ajax()) {
+            $data = Category::latest()->get();
+
+
             return datatables()->of(Category::select([
                 'id','name' , 'description', 'image' , 'status'
             ]))
@@ -40,7 +43,11 @@ class CategoryController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+        }elseif($request->has('name')){
+            
+
         }
+        
         return view('categories.index');
     }
 
