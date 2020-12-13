@@ -47278,7 +47278,7 @@ code {
   background-color: #EBEDF3; }
 
 .switch input:empty ~ span:after {
-  background-color: #ffffff;
+  background-color: #f64e60;
   opacity: 0.7; }
 
 .switch input:checked ~ span:before {
@@ -47287,7 +47287,7 @@ code {
 .switch input:checked ~ span:after {
   opacity: 1;
   color: #ffffff;
-  background-color: #3699FF; }
+  background-color: #138f1d; }
 
 .switch.switch-primary:not(.switch-outline) input:empty ~ span:before {
   background-color: #3699FF; }
@@ -56488,8 +56488,6 @@ code {
         top: 50% !important;
         margin-top: -0.75rem;
         bottom: auto !important; }
-      .dataTables_wrapper .dataTable th.sorting_asc, .dataTables_wrapper .dataTable td.sorting_asc {
-        color: #3699FF !important; }
         .dataTables_wrapper .dataTable th.sorting_asc:before, .dataTables_wrapper .dataTable td.sorting_asc:before {
           opacity: 1;
           color: #3699FF !important; }

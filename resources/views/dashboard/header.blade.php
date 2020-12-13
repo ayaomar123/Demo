@@ -7,19 +7,8 @@
             <div id="kt_header_menu" class="header-menu header-menu-mobile ">
                         <div class="d-flex flex-wrap">
                             <div id="page-navbar">
-                                <nav role="navigation">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-										<a href="{{route('categories.index')}}">Category</a>
-										</li>
-                                        <li class="breadcrumb-item">
-											<span class="no-link">Show</span>
-										</li>
-                                        <li class="breadcrumb-item">
-											@yield('li')
-										</li>
-                                    </ol>
-                                </nav>
+                                <h4 class="mt-2" style="color:#3699ff;  font-family: Arial, Helvetica, sans-serif;
+                                ">Manging Category</h4>
                             </div>
                             <div class="ml-auto d-flex">
 
@@ -293,3 +282,12 @@
     <!--end::Container-->
 </div>
 <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+    <div class="mt-5 container">
+        <div class="row">
+            <div class="col-md-6 btn-group btn-breadcrumb">
+            <a href="{{route('categories.index')}}" class="btn btn-primary"><i class="fas fa-home"></i></a>
+                <a href="#" class="btn btn-primary">Category</a>
+                @yield('name')
+            </div>
+        </div>
+    </div>

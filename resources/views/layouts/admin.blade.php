@@ -3,6 +3,10 @@
 @yield('title')
 @yield('style')
 @include('dashboard.header')
+@yield('breadcrumb')
+@include('dashboard.shared.msg')
+
 @yield('content')
+
 @include('dashboard.footer')
 @yield('script')

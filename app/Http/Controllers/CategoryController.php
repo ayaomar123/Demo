@@ -7,6 +7,8 @@ use App\models\Article;
 use Illuminate\Http\Request;
 use Validator,Redirect,Response;
 use DataTables;
+use Toastr;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -24,29 +26,45 @@ class CategoryController extends Controller
     }
     public function index(Request $request)
     {
+
         if(request()->ajax()) {
-            $data = Category::latest()->get();
-
-
-            return datatables()->of(Category::select([
-                'id','name' , 'description', 'image' , 'status'
-            ]))
+            
+            $data = Category::select('*');
+            
+            return datatables()::of($data)
             ->addIndexColumn()
+            ->filter(function ($instance) use ($request) {
+                if (isset($request->name)) {
+                    $instance->where('name', 'like', '%'.\request('name').'%');
+                }
+                if (isset($request->status)) {
+                    $instance->where('status', $request->status);
+                }
+                if (isset($request->search)) {
+                    $instance->where('name', 'like', '%'.\request('search').'%')
+                    ->orWhere('status', 'LIKE', '%' . $request->search . '%');
+                }
+            })
+            ->rawColumns(['status'])
             ->addColumn('action', function($data){
                    
                    $editUrl = url('categories/'.$data->id);
-                   $btn = '<a href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary btn-lg">Edit</a>';
+                   
+                   $btn = '<a style="width:100px" href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
 
-                   $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger btn-lg delete">Delete</a>';
+                   $btn = $btn.' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
 
                     return $btn;
             })
             ->rawColumns(['action'])
             ->make(true);
-        }elseif($request->has('name')){
             
-
         }
+/*         $query = Category::query();
+$query->when(request('search') == 'likes', function ($q) {
+    return $q->where('name', 'LIKE', '%' . \request('search') . '%');
+}); */
+        
         
         return view('categories.index');
     }
@@ -75,9 +93,11 @@ class CategoryController extends Controller
             'description' => 'required',
             'image' => 'required',
             ]);
-           
+            if (isset($request->status)) {
+              $data['status'] = $request->status;
+            }
             $check = Category::create($data);
-            return Redirect::to("categories")->withSuccess('Great! categories has been inserted');
+            return Redirect::to("categories")->with('msg', 'Category Created Successfully');
     
     }
 
@@ -126,7 +146,7 @@ class CategoryController extends Controller
             ]);
     
             $check = Category::where('id', $request->id)->update($data);
-            return Redirect::to("categories")->withSuccess('Great! Category has been updated');
+            return Redirect::to("categories")->with('info', 'Category Edited Successfully');
     }
 
     /**

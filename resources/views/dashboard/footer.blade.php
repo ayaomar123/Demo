@@ -41,17 +41,10 @@
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{asset('assets/js/pages/widgets.js')}}"></script>
+{{-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
 <!--end::Page Scripts-->
 </body>
 <!--end::Body-->
 </html>
-<style>
-    .footer {
-      position: fixed;
-      left: 
-      0;
-      bottom: 0;
-      width: 100%;  
-      text-align: center;
-    }
-    </style>
