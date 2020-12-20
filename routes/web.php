@@ -11,7 +11,8 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Category;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,6 @@ Route::get('/index/{locale}', function ($locale) {
     return view('index');
 });
 */
-Auth::routes();
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 /* Route::get('/', function () {
     $categories = \App\Models\Category::first();
@@ -35,9 +35,7 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 })   $categories->articles()->attach($articles);
  ; */
 
-Route::get('/', function () {
-    return view('layouts.admin');
-});
+
 Route::middleware(['auth'])->prefix('/home')->group(function () {
     Route::get('/', [AdminController::class,'index']);
     Route::resource('roles', RoleController::class);
@@ -49,15 +47,27 @@ Route::get('/home/{locale}', function ($locale) {
     return view('layouts.myAdmin');
 });
 
-Route::group(['prefix' => 'categories'], function(){
-    Route::get('/',[CategoryController::class, 'index'])->name('categories.index');
-    Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('/',  [CategoryController::class, 'store'])->name('categories.store');
-    //Route::post('/show',  [CategoryController::class, 'show'])->name('categories.show');
-    Route::get('/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::post('/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
-    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+Route::get('searching',[CategoryController::class, 'searching'])->name('searching');
+
+Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
+    Route::get('/',[CategoryController::class, 'index'])->name('index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('create');
+    Route::post('/',  [CategoryController::class, 'store'])->name('store');
+    //Route::post('/show',  [CategoryController::class, 'show'])->name('show');
+    Route::get('/{id}', [CategoryController::class, 'edit'])->name('edit');
+    Route::post('/{id}/update', [CategoryController::class, 'update'])->name('update');
+    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+    Route::post('changeStatus',[CategoryController::class, 'changeStatus'])->name('changeStatus');
+    Route::put('activeAll',[CategoryController::class, 'activeAll'])->name('activeAll');
+    Route::put('activate',[CategoryController::class, 'activate'])->name('activate');
+
+
+
 });
+
+Route::post('myproductsDeleteAll',[CategoryController::class, 'deleteAll'])->name('category.multiple-delete');
+
 
 Route::group(['prefix' => 'articles'], function(){
     Route::get('/',[ArticleController::class, 'index'])->name('articles.index');

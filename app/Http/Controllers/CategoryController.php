@@ -26,6 +26,14 @@ class CategoryController extends Controller
     }
     public function index(Request $request)
     {
+        //dd($request->all());
+//http://127.0.0.1:8000/categories?filter%5Bname%5D=sum&filter%5Bstatus%5D=1
+        // $category = Categ::query()->when($request('name') || $request->status != null, function($query){
+        //     $query->where('name', 'like', '%'.$request('filter[name]').'%')
+        //     ->orWhere('status', request->status)
+        //     -
+        // })
+        $items = Category::all();
 
         if(request()->ajax()) {
             
@@ -34,16 +42,17 @@ class CategoryController extends Controller
             return datatables()::of($data)
             ->addIndexColumn()
             ->filter(function ($instance) use ($request) {
-                if (isset($request->name)) {
-                    $instance->where('name', 'like', '%'.\request('name').'%');
+                if (isset($request->cat)) {
+                    $instance->where('name', $request->cat);
                 }
                 if (isset($request->status)) {
                     $instance->where('status', $request->status);
                 }
-                if (isset($request->search)) {
-                    $instance->where('name', 'like', '%'.\request('search').'%')
-                    ->orWhere('status', 'LIKE', '%' . $request->search . '%');
-                }
+                // if (isset($request->search)) {
+                //     $instance->where('name', 'like', '%'.\request('search').'%')
+                //     ->orWhere('status', 'LIKE', '%' . $request->search . '%');
+                // }               
+
             })
             ->rawColumns(['status'])
             ->addColumn('action', function($data){
@@ -60,13 +69,7 @@ class CategoryController extends Controller
             ->make(true);
             
         }
-/*         $query = Category::query();
-$query->when(request('search') == 'likes', function ($q) {
-    return $q->where('name', 'LIKE', '%' . \request('search') . '%');
-}); */
-        
-        
-        return view('categories.index');
+        return view('categories.index',compact('items'));
     }
 
     /**
@@ -163,6 +166,58 @@ $query->when(request('search') == 'likes', function ($q) {
          Category::query()->find($id)->delete();
  
          return  response()->json(['success' => 'success']);
+    }
+
+    public function deleteAll(Request $request){
+        $ids = $request->input('id');
+        //dd($ids);
+        //Category::whereIn('id',explode(",",$ids))->delete();
+        Category::whereIn('id',$ids)->delete();
+        return response()->json(['success'=>"Category Deleted successfully."]);
+
+    }
+
+    public function activeAll(Request $request){
+        //dd($request->all());
+        $ids = $request->input('id');
+        $status = $request->status;
+        Category::whereIn('id',$ids)->update(['status'=>$status]);
+        return response()->json(['success'=>"Categories updated successfully."]);
+
+    }
+
+    public function activate(Request $request){
+        //dd($request->all());
+        $ids = $request->input('id');
+        $status = !($request->status);
+        Category::whereIn('id',$ids)->update(['status'=>$status]);
+        return response()->json(['success'=>"Categories updated successfully."]);
+
+    }
+
+    public function changeStatus(Request $request) 
+    {
+        $category = Category::find($request->id);
+        $status = $request->status;
+        $category->update(['status'=>$status]);
+
+        return response()->json(['success'=>"Category Status Updated successfully."]);
+    }
+    public function searching(Request $request)
+    {
+        $cat = $request->cat;
+        $status = $request->status;
+        $query = Category::whereRaw('true');
+        //$query = Category::where('id','>',0);
+        if($cat!=''){
+            $query->where('name',$cat);
+        }
+        if($status!=''){
+            $query->where('status',$status);
+        }
+        
+        $items = $query->get();
+        return view("categories.index")->with('items',$items);
     }
     
 }

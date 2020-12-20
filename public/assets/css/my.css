@@ -1,3 +1,5 @@
+/* breadcrumb style */
+
 .btn-breadcrumb .btn:not(:last-child):after {
     content: " ";
     display: block;
