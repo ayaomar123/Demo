@@ -95,8 +95,8 @@
         <table class="table table-bordered" id="laravel-datatable-crud">
             <thead>
                 <tr style="background:#3699ff">
-                    <th style=" text-align:center;width:40px"><input class="big-checkbox regular-checkbox text-content"
-                            type="checkbox" name="check_all" id="check_all">
+                    <th style=" text-align:center;width:40px">
+                        <input class="big-checkbox regular-checkbox text-content" type="checkbox" name="check_all" id="check_all">
                     </th>
                     <th style="color: whitesmoke">Id</th>
                     <th style="color: whitesmoke">Name</th>
@@ -140,6 +140,7 @@
 
                 'processing': true,
                 'serverSide': true,
+                'searching' :true,
                 'ajax': {
                     url: "{{ url('categories') }}",
                     type: 'GET',
@@ -267,7 +268,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Yes, delete it!',
+                    closeOnConfirm: false
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire(
@@ -275,23 +277,19 @@
                             'Your file has been deleted.',
                             'success'
                         )
+                        window.location.reload();
                     }
-                    window.location.reload();
                 });
-
                 $.ajax({
                     type: "DELETE",
                     url: "{{ url('categories') }}" + '/' + catid,
                     success: function(data) {
                         var oTable = $('#laravel-datatable-crud').dataTable();
-                        //window.location.reload();
-                        //   oTable.fnDraw(true);
                     },
                     error: function(data) {
                         console.log('Error:', data);
                     }
                 });
-
             });
 
             //delete selected records
@@ -312,7 +310,8 @@
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, delete it!'
+                            confirmButtonText: 'Yes, delete it!',
+                            closeOnConfirm: false
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 Swal.fire(
@@ -320,18 +319,21 @@
                                     'Your file has been deleted.',
                                     'success'
                                 )
+                                window.location.reload();
                             }
                         });
                         $.ajax({
                             url: "{{ route('category.multiple-delete') }}",
-                            method: "post",
+                            method: "DELETE",
                             data: {
                                 id: id
                             },
                             success: function(data) {
-                                //alert(data);
-                                $('#laravel-datatable-crud').DataTable().ajax.reload();
-
+                                //$('#laravel-datatable-crud').DataTable().ajax.reload();
+                                var oTable = $('#laravel-datatable-crud').dataTable();
+                            },
+                            error: function(data) {
+                                console.log('Error:', data);
                             }
                         });
                     }

@@ -66,7 +66,7 @@ Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
 
 });
 
-Route::post('myproductsDeleteAll',[CategoryController::class, 'deleteAll'])->name('category.multiple-delete');
+Route::delete('myproductsDeleteAll',[CategoryController::class, 'deleteAll'])->name('category.multiple-delete');
 
 
 Route::group(['prefix' => 'articles'], function(){

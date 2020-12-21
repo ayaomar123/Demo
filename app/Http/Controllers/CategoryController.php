@@ -48,10 +48,12 @@ class CategoryController extends Controller
                 if (isset($request->status)) {
                     $instance->where('status', $request->status);
                 }
-                // if (isset($request->search)) {
-                //     $instance->where('name', 'like', '%'.\request('search').'%')
-                //     ->orWhere('status', 'LIKE', '%' . $request->search . '%');
-                // }               
+                if (isset($request->search)) {
+                    $instance->where('name', 'like', '%'.\request('search').'%')
+                    ->orWhere('status', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('description', 'LIKE', '%' . $request->search . '%');
+
+                }               
 
             })
             ->rawColumns(['status'])
