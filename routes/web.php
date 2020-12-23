@@ -27,7 +27,12 @@ Route::get('/index/{locale}', function ($locale) {
     return view('index');
 });
 */
+Auth::routes();
+
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
+
+
 /* Route::get('/', function () {
     $categories = \App\Models\Category::first();
     $articles = \App\Models\Article::all();
@@ -41,7 +46,7 @@ Route::middleware(['auth'])->prefix('/home')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 });
-//Route::get('/home', [AdminController::class,'index'])->name('home');
+Route::get('/home', [AdminController::class,'index'])->name('home');
 Route::get('/home/{locale}', function ($locale) {
     App::setLocale($locale);
     return view('layouts.myAdmin');
@@ -52,6 +57,7 @@ Route::get('searching',[CategoryController::class, 'searching'])->name('searchin
 
 Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
     Route::get('/',[CategoryController::class, 'index'])->name('index');
+    Route::get('data',[CategoryController::class, 'data'])->name('data');
     Route::get('/create', [CategoryController::class, 'create'])->name('create');
     Route::post('/',  [CategoryController::class, 'store'])->name('store');
     //Route::post('/show',  [CategoryController::class, 'show'])->name('show');
@@ -59,7 +65,7 @@ Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
     Route::post('/{id}/update', [CategoryController::class, 'update'])->name('update');
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('destroy');
     Route::post('changeStatus',[CategoryController::class, 'changeStatus'])->name('changeStatus');
-    Route::put('activeAll',[CategoryController::class, 'activeAll'])->name('activeAll');
+    Route::put('deactive',[CategoryController::class, 'deactive'])->name('deactive');
     Route::put('activate',[CategoryController::class, 'activate'])->name('activate');
 
 

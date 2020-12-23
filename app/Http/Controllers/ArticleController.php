@@ -13,6 +13,7 @@ use Session;
 
 class ArticleController extends Controller
 {
+    
     /**
      * 
      * Display a listing of the resource.
@@ -43,6 +44,10 @@ class ArticleController extends Controller
 
                 if (isset($request->status)) {
                     $instance->where('status', $request->status);
+                }
+                if (isset($request->category)) {
+                    //dd($request->category);
+                    $instance->where('category', $request->category);
                 }
 
                 if (isset($request->search)) {

@@ -11,12 +11,19 @@ use Session;
 
 class CategoryController extends Controller
 {
+    public function index(){
+
+    $items = $this->queryModel()->get();
+    return view('categories.index',compact('items'));
+
+}
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function data(Request $request)
     {
 
         $items = $this->queryModel()->get();
@@ -28,22 +35,29 @@ class CategoryController extends Controller
             return datatables()::of($data)
             ->addIndexColumn()
             ->filter(function ($instance) use ($request) {
-                if (isset($request->cat)) {
-                    $instance->where('name', $request->cat);
+
+                if (isset($request->category)) {
+                    $instance->where('name', $request->category);
                 }
+
                 if (isset($request->status)) {
                     $instance->where('status', $request->status);
                 }
+
                 if (isset($request->search)) {
                     $instance->where('name', 'like', '%'.\request('search').'%')
                     ->orWhere('status', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('description', 'LIKE', '%' . $request->search . '%');
+
                 }               
             })
             ->rawColumns(['status'])
-            ->addColumn('action', function($data){                   
-                   $editUrl = url('categories/'.$data->id);                   
+            ->addColumn('action', function($data){
+
+                   $editUrl = url('categories/'.$data->id);   
+
                    $btn = '<a style="width:100px" href="'.$editUrl.'" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary"><i class="fas fa-edit"></i>Edit</a>';
+                   
                    $btn = $btn.' <a style="width:100px" href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Delete" class="btn btn-danger delete"><i class="fas fa-trash"></i>Delete</a>';
 
                     return $btn;
@@ -52,7 +66,6 @@ class CategoryController extends Controller
             ->make(true);            
         }
 
-        return view('categories.index',compact('items'));
     }
 
     /**
@@ -159,7 +172,7 @@ class CategoryController extends Controller
         return response()->json(['success'=>"Category Deleted successfully."]);
     }
 
-    public function activeAll(){  
+    public function deactive(){  
 
         $this->queryModel()
         ->whereIn('id',\request('id'))
@@ -167,16 +180,20 @@ class CategoryController extends Controller
        
         return response()->json(['success'=>"Categories updated successfully."]);
     }
-    public function activate(Request $request){
-        //dd($request->all());
-        $ids = $request->input('id');
-        $status = !($request->status);
-        Category::whereIn('id',$ids)->update(['status'=>$status]);
+
+
+    public function activate(){
+
+        $this->queryModel()
+        ->whereIn('id',\request('id'))
+        ->update(['status'=> !\request('status')]);
+
         return response()->json(['success'=>"Categories updated successfully."]);
 
     }
     public function changeStatus(Request $request) 
     {
+
         $category = Category::find($request->id);
         $status = $request->status;
         $category->update(['status'=>$status]);
@@ -188,11 +205,13 @@ class CategoryController extends Controller
     {
         $items = $this->queryModel();
 
-        if(request('cat')){
-            $items->where('name', request('cat'));
+        if(request('category')){
+            $items->where('name', request('category'));
+
         }elseif(request('status')){
             $items->where('status', request('status'));
         }
+        
         $items->get();
 
         return view("categories.index")->with('items',$items);
