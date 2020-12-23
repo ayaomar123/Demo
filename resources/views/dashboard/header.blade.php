@@ -286,7 +286,6 @@
         <div class="row">
             <div class="col-md-6 btn-group btn-breadcrumb">
             <a href="{{route('categories.index')}}" class="btn btn-primary"><i class="fas fa-home"></i></a>
-                <a href="#" class="btn btn-primary">Category</a>
                 @yield('name')
             </div>
         </div>

@@ -10,6 +10,7 @@
     </style>
 @endsection
 @section('name')
+    <a href="#" class="btn btn-primary">Category</a>
     <a href="{{ route('categories.index') }}" class="btn btn-primary">Show</a>
 @endsection
 @section('content')
@@ -87,7 +88,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 
@@ -96,7 +96,8 @@
             <thead>
                 <tr style="background:#3699ff">
                     <th style=" text-align:center;width:40px">
-                        <input class="big-checkbox regular-checkbox text-content" type="checkbox" name="check_all" id="check_all">
+                        <input class="big-checkbox regular-checkbox text-content" type="checkbox" name="check_all"
+                            id="check_all">
                     </th>
                     <th style="color: whitesmoke">Id</th>
                     <th style="color: whitesmoke">Name</th>
@@ -140,14 +141,14 @@
 
                 'processing': true,
                 'serverSide': true,
-                'searching' :true,
+                'searching': true,
                 'ajax': {
                     url: "{{ url('categories') }}",
                     type: 'GET',
                     data: function(d) {
                         d.search = $('input[type="search"]').val(),
-                        d.cat = $('#cat').val(),
-                        d.status = $("#status").val()
+                            d.cat = $('#cat').val(),
+                            d.status = $("#status").val()
                     }
 
                 },
@@ -232,6 +233,7 @@
                 ]
             });
 
+            //seaching by Category name or status
             $('#filter').on('click', function(e) {
                 e.preventDefault();
                 var status = $('#status').val();

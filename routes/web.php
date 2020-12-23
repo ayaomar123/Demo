@@ -69,15 +69,22 @@ Route::group(['prefix' => 'categories','as'=>'categories.'], function(){
 Route::delete('myproductsDeleteAll',[CategoryController::class, 'deleteAll'])->name('category.multiple-delete');
 
 
-Route::group(['prefix' => 'articles'], function(){
-    Route::get('/',[ArticleController::class, 'index'])->name('articles.index');
-    Route::get('/create', [ArticleController::class, 'create'])->name('articles.create');
-    Route::post('/',  [ArticleController::class, 'store'])->name('articles.store');
-    Route::post('/show',  [ArticleController::class, 'show'])->name('articles.show');
-    Route::get('/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
-    Route::post('/{id}/update', [ArticleController::class, 'update'])->name('articles.update');
-    Route::get('/{id}', [ArticleController::class, 'destroy'])->name('articles.delete');
+Route::group(['prefix' => 'articles','as'=>'articles.'], function(){
+    Route::get('/',[ArticleController::class, 'index'])->name('index');
+    Route::get('data',[ArticleController::class, 'data'])->name('data');
+    Route::get('/create', [ArticleController::class, 'create'])->name('create');
+    Route::post('/',  [ArticleController::class, 'store'])->name('store');
+    //Route::post('/show',  [ArticleController::class, 'show'])->name('show');
+    Route::get('/{id}', [ArticleController::class, 'edit'])->name('edit');
+    Route::post('/{id}/update', [ArticleController::class, 'update'])->name('update');
+    Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('delete');
+    Route::post('changeStatus',[ArticleController::class, 'changeStatus'])->name('changeStatus');
+    Route::put('deactive',[ArticleController::class, 'deactive'])->name('deactive');
+    Route::put('activate',[ArticleController::class, 'activate'])->name('activate');
+    Route::delete('myproductsDeleteAll',[ArticleController::class, 'deleteAll'])->name('multiple-delete');
+
 });
+
 
 Route::group(['prefix' => 'slider'], function(){
     Route::get('/',[SliderController::class, 'index'])->name('slider.index');

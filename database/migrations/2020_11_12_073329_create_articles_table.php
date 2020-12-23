@@ -15,7 +15,7 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('name');
             $table->string('slug')->unique();
             $table->string('description');
             $table->boolean('status')->nullable();

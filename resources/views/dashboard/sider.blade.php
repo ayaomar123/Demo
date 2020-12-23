@@ -171,5 +171,7 @@
 					</div>
 					<!--end::Aside Menu-->
 				</div>
+			</div>
+		</div>
 				<!--end::Aside-->
 

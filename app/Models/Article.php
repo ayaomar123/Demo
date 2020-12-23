@@ -7,8 +7,10 @@ use Illuminate\Support\Str;
 
 class Article extends Model
 {
+
+    protected $with = ['categories'];
     
-    protected $fillable = ['category_id','title','slug','description','status','image'];
+    protected $fillable = [ 'name','description','image','status'];
 
     public function categories()
     {
@@ -19,20 +21,9 @@ class Article extends Model
     {
         parent::boot();
         static::creating(function ($article) {
-            $article->slug = Str::slug($article->title);
+            $article->slug = Str::slug($article->name);
         });
     }
-    public function setCategoryAttribute($value)
-    {
-        $this->attributes['category'] = json_encode($value);
-    }
-
-    public function getCategoryAttribute($value)
-    {
-        return $this->attributes['category'] = json_decode($value);
-    }
-    // public function getImageAttribute($value)
-    // {
-    //     return !is_null($value) ? asset(Storage::url($value)) : '';
-    // }
+   
+    
 }
